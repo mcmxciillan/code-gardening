@@ -1,193 +1,105 @@
 ---
 name: greenfield-architecture
-description: Upfront discovery interrogation, user story decomposition, and universal architectural design skill for new projects or greenfield features. Forces agents to deeply question the human about the target state before building, decomposes specs into detailed user stories and GitHub issues published locally or to remote repos, generates and opens visual human-facing HTML dashboards, pauses for explicit human confirmation, and constructs software using technology-agnostic deep modules, pure delivery decoupling, headless state machines, and deterministic anchor verification.
+description: Day-1 architecture discovery, specification decomposition, and deep-module construction. Use when starting a new project, designing a greenfield feature or subsystem, or when another skill needs the 8 Pillars and HTML dashboard reference.
 ---
 
-# Greenfield Architecture & Upfront Discovery (Day-1 Rigor)
+# Greenfield Architecture
 
-Build software correctly from Day 1 without iterative multi-cycle refactoring loops. This skill guides the agent to:
-1. **Exhaustively interrogate the human upfront** across the 8 architectural pillars.
-2. Decompose high-level architecture into **concrete User Stories with Acceptance Criteria and GitHub Issues**.
-3. Publish tracking artifacts to `~/private/tmp/{project-name}` or GitHub.
-4. **Render and automatically open a visual HTML architecture dashboard** for the human.
-5. **PAUSE FOR EXPLICIT HUMAN CONFIRMATION** before writing a single line of production code.
-6. Construct the codebase using universal deep-module design principles and deterministic anchor truth tests.
+Design and build new systems or features with deep modules from Day 1—eliminating reactive refactoring loops.
 
----
-
-## 1. The 8-Pillar Upfront Human Interrogation Protocol
-
-Before writing code or scaffold files, you **MUST** interrogate the human across the 8 architectural pillars. Do not assume or guess ambiguous requirements. Ask explicit, structured questions to gain a complete understanding of the final state.
+Read [`PILLARS.md`](PILLARS.md) for the **8 Pillars of Greenfield Architecture** and the 5-Tier Deep Seam model. Read [`DASHBOARD-STYLE.md`](DASHBOARD-STYLE.md) when rendering the visual HTML dashboard.
 
 ```mermaid
 graph LR
-    subgraph "The 8 Discovery Pillars"
-        P1[1. Entities & Cardinality] --> P2[2. Invariants & Lifecycle]
-        P2 --> P3[3. External Boundaries]
-        P3 --> P4[4. Authorization & Tenancy]
-        P4 --> P5[5. State & Interaction]
-        P5 --> P6[6. Locality & Subsystems]
-        P6 --> P7[7. Projections & Caching]
-        P7 --> P8[8. Anchor Quality Gates]
-    end
+    Inspect["1. Inspect Repo & Context"] --> Gate1["2. GATE 1: 8-Pillar Discovery Questions (Wait for Answers)"]
+    Gate1 --> Spec["3. Write Spec, User Stories & Issues"]
+    Spec --> Dash["4. Open HTML Architecture Dashboard"]
+    Dash --> Gate2["5. GATE 2: Blueprint Approval (Wait for 'Proceed')"]
+    Gate2 --> Build["6. Build Anchor Tests -> Deep Modules -> Thin Adapters"]
 ```
-
-### Pillar 1: Domain Entities, Relationships & Cardinality
-- What are all the core domain entities in the system, and what is their relational cardinality (1:1, 1:N, N:M)?
-- Are there hierarchical, recursive, or polymorphic relationships (e.g., nested categories, composite trees, multi-type resources)?
-- What composite views, summary rollups, or aggregate projections will the delivery layer require?
-
-### Pillar 2: Invariants, Compliance & Lifecycle Transitions
-- What regulatory, business, or operational constraints are non-negotiable (e.g., immutable audit logging, revision history, legal retention, soft deletion)?
-- What are the valid lifecycle state transitions (e.g., `draft` -> `pending_review` -> `published` -> `archived`), and what conditions/actors permit each transition?
-- Which state mutations require atomic relational cascades (e.g., creating child records, updating search indexes, invalidating caches) in a single transactional boundary?
-
-### Pillar 3: External Boundaries & Anti-Corruption Layers
-- What third-party services, APIs, databases, or message buses will the system interact with?
-- What are the required fallback, retry, and offline behaviors if an external dependency fails (e.g., local queuing, fallback storage, mock test drivers)?
-- What sensitive data (PII, tokens, secrets) must be sanitized or masked before crossing system boundaries?
-
-### Pillar 4: Authorization, Actors & Policy Gating
-- What actor types and permission roles exist (e.g., Anonymous, Standard User, Editor, Administrator, System Worker)?
-- What are the tenancy boundaries (e.g., single-tenant, multi-tenant workspace, geographic compliance boundaries)?
-- How should authorization violations and authentication challenges be communicated to callers (e.g., typed error envelopes, redirect flows, audit security alerts)?
-
-### Pillar 5: User Interaction, Form State & Mutations
-- What multi-step workflows, wizards, or complex input forms exist?
-- How should form validation, dirty tracking, optimistic updates, and submission feedback be orchestrated?
-- What interactive client behaviors are needed (e.g., ranked search, faceted filtering, table sorting, autosave)?
-
-### Pillar 6: Code Locality, Subsystem Grouping & Boundaries
-- Which components, views, or handlers are strictly single-consumer (local to one route or endpoint) versus shared across multiple consumers?
-- How should shared capabilities be grouped into cohesive domain subsystems with explicit public barrel facades?
-
-### Pillar 7: Query Projections, Performance & Caching
-- What are the critical high-traffic read paths, and how can composite projections be structured to eliminate N+1 query patterns?
-- Where do caching boundaries belong (e.g., edge, memory, distributed store, HTTP cache-control)?
-
-### Pillar 8: Quality Gates & Deterministic Anchor Truths
-- What hard architectural invariants must be asserted via automated tests (e.g., zero direct storage/database imports in delivery routes, zero circular dependencies, mandatory statement/branch coverage thresholds)?
-- What end-to-end integration journeys define a successful implementation?
 
 ---
 
-## 2. Specification Decomposition & Publishing Pipeline
+## Phase 1: Context Audit & 8-Pillar Discovery (**Gate 1 — Stop for Answers**)
 
-Once discovery is complete, the agent creates documentation tailored for both **Agents** (executable specs) and **Humans** (clear visual dashboards).
+1. **Audit the environment first**: Inspect the repository (`package.json`, schema files, existing directory layout, and user prompt) to extract every architectural fact already decided. Never ask the human what the codebase already answers.
+2. **Identify unresolved gaps across the 8 Pillars**:
+   - **Pillar 1 (Entities & Cardinality)**: Core domain entities, `1:1` / `1:N` / `N:M` relations, hierarchy/polymorphism, composite read rollups.
+   - **Pillar 2 (Invariants & Lifecycle)**: Non-negotiable compliance rules (audit trail, revision history, soft-delete), valid state transitions (`draft -> published -> archived`), and atomic transaction cascades.
+   - **Pillar 3 (External Boundaries)**: Third-party APIs/SDKs/queues, retry/fallback behavior when an integration is down, and PII/secret masking rules.
+   - **Pillar 4 (Authorization & Tenancy)**: Actor roles, single- vs. multi-tenant isolation boundaries, and failure envelopes for unauthorized requests.
+   - **Pillar 5 (State & Interaction)**: Multi-step workflows/forms, validation & optimistic update behavior, and client search/filtering needs.
+   - **Pillar 6 (Locality & Subsystems)**: Single-route components vs. shared domain subsystems and their public barrel facades.
+   - **Pillar 7 (Projections & Caching)**: High-traffic read paths, N+1 prevention projections, and caching tiers (edge, memory, store).
+   - **Pillar 8 (Anchor Quality Gates)**: Hard architectural invariants to assert in tests (e.g., zero storage imports in delivery routes, coverage bar $\ge 85\%$) and critical E2E journeys.
+3. **Ask focused discovery questions and STOP**:
+   - Group only the genuinely unresolved questions concisely (use the `ask_question` tool if available, or present a brief, structured list proposing sensible defaults).
+   - **Gate 1 Completion Criterion**: End your turn immediately after asking the discovery questions so the human can answer before any spec or dashboard is generated. (Skip Gate 1 only if the user's prompt already specifies all applicable pillars in full.)
 
-```mermaid
-graph TD
-    Interrogate[8-Pillar Interrogation] --> ArchSpec[1. System Architecture Specification]
-    ArchSpec --> UserStories[2. Decompose into User Stories & Acceptance Criteria]
-    UserStories --> Issues[3. Generate GitHub Issues / Markdown Tickets]
-    Issues --> Publish[4. Publish Artifacts to ~/private/tmp/{project-name} & GitHub]
-    Publish --> HTML[5. Generate & Open Visual HTML Architecture Dashboard]
-    HTML --> Pause["6. MANDATORY PAUSE: Wait for User Confirmation"]
-    Pause -->|User Approves| Implement[7. Greenfield Implementation Fan-Out]
-    Pause -->|User Requests Changes| Adjust[Adjust Specifications & Dashboard]
-    Adjust --> HTML
-```
+---
 
-### Step 1: System Architecture Specification
-Synthesize the answers into an authoritative architecture document (`ARCHITECTURE-SPEC.md`) containing:
-- Domain model entity diagrams.
-- 5-Tier layered structure (Adapters, Guards, Deep Modules, Gateways, Headless State).
-- Data flow diagrams and transaction boundaries.
+## Phase 2: Specification, User Stories & Visual Dashboard
 
-### Step 2: User Story & Acceptance Criteria Decomposition
-Decompose the architecture specification into concrete, vertical user stories. Each user story must follow the standard format:
+Once the human answers the discovery questions, set `PROJECT_NAME` to the repository/project slug (`basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"`) and `OUT_DIR="$HOME/private/tmp/${PROJECT_NAME}"`.
+
+### 1. System Architecture Specification (`${OUT_DIR}/specs/ARCHITECTURE-SPEC.md` and `docs/specs/ARCHITECTURE-SPEC.md`)
+Document the authoritative blueprint following [`PILLARS.md`](PILLARS.md):
+- Entity relationship diagram and domain types.
+- 5-Tier seam map: Thin Delivery Adapters (<30 lines), Declarative Policy Guards, Deep Domain Modules, Anti-Corruption Gateways, and Headless State Models.
+- Transactional boundaries and invariant cascades.
+
+### 2. Vertical User Stories & Issues (`${OUT_DIR}/issues/US-<NUMBER>-<SLUG>.md`)
+Decompose the blueprint into vertical slices. Every story must carry checkable `Given / When / Then` acceptance criteria:
+
 ```markdown
-### US-[NUMBER]: [User Story Title]
-**As a** [Actor Type]  
-**I want to** [Perform Action]  
-**So that** [Deliver Business Value]  
+### US-[NUMBER]: [Title]
+**As a** [Actor] | **I want to** [Action] | **So that** [Outcome]
 
-#### Acceptance Criteria (Gherkin / Checkable):
-- [ ] **AC-1**: Given [Precondition], When [Action], Then [Result].
-- [ ] **AC-2**: [Specific edge case or error handling behavior].
-- [ ] **AC-3**: [Compliance / Invariant assertion].
+#### Acceptance Criteria:
+- [ ] **AC-1**: Given [Precondition], When [Action], Then [Observable Result].
+- [ ] **AC-2**: [Edge case / error envelope / permission rejection].
+- [ ] **AC-3**: [Pillar invariant assertion: audit / transaction / gateway isolation].
 ```
 
-### Step 3: Issue Generation & Artifact Publishing
-Format each User Story as a GitHub Issue / Ticket and publish them:
-1. **Local Publishing**: Save all generated specifications, user stories, and issue files under `~/private/tmp/{project-name}/` (e.g. `~/private/tmp/{project-name}/specs/` and `~/private/tmp/{project-name}/issues/`).
-2. **Remote Repository Publishing**: If GitHub CLI (`gh`) or GitHub MCP tools are available and authorized, publish each issue directly to the GitHub repository / project board.
+If GitHub CLI (`gh`) or GitHub MCP is authenticated and the user requested remote tracking, publish the issues to the repository.
 
----
+### 3. Human-Facing HTML Dashboard (`${OUT_DIR}/architecture-dashboard.html`)
+Compile the blueprint and user stories into a self-contained HTML file following [`DASHBOARD-STYLE.md`](DASHBOARD-STYLE.md) (plain-English cards, zero academic jargon, working Mermaid ESM script) including:
+- **Executive Summary Header**: Project name, domain count, story count, and anchor test targets.
+- **Domain Subsystem Cards**: Plain-English *Problem / Fix / Why* breakdown plus public interface signatures and hidden invariants.
+- **Before vs. After Blueprints**: Side-by-side `<pre class="mermaid">` diagrams contrasting shallow direct-coupling against the proposed deep seams.
+- **User Story Explorer & Execution Roadmap**: Collapsible cards for each `US-XX` and ordered implementation tiers.
 
-## 3. Human-Facing Visual HTML Architecture Dashboard
-
-The agent **MUST** compile all specifications and user stories into a self-contained visual HTML dashboard (`~/private/tmp/{project-name}/architecture-dashboard.html`) and automatically open it in the default browser:
-
+Automatically open the dashboard in the user's browser:
 ```bash
-# Auto-open command executed by the agent:
-open ~/private/tmp/{project-name}/architecture-dashboard.html
+open "${OUT_DIR}/architecture-dashboard.html"
 ```
-
-
-### Plain English Writing Mandate for Human-Facing Dashboards:
-When generating HTML reports for humans, **write in clear, simple, plain English**. Do NOT use unnecessary academic or overly dense jargon. Only use technical architectural terms when strictly necessary to reference a specific file, tool, type, or function.
-
-#### Jargon vs. Plain English Guide:
-| Jargon (Avoid in HTML Reports) | Plain English Translation (Use This) |
-| :--- | :--- |
-| "Leaky abstraction with direct persistence coupling" | "The web page talks directly to the database instead of using a dedicated data manager." |
-| "Shotgun surgery across shallow adapters" | "Changes to one feature force us to edit 5 different files instead of just one." |
-| "Monolithic presentation component with entangled state dispatch" | "One giant 600-line screen is handling visual layout, button clicks, data fetching, and error popups all at once." |
-| "Enforce immutable provenance snapshots within transactional boundary" | "Automatically saves a revision history record whenever a post is updated so nothing is lost." |
-| "Higher-order declarative policy interception" | "A single security check that automatically blocks non-admin users before running actions." |
-| "Anti-corruption gateway isolating vendor telemetry payload serialization" | "A dedicated integration helper that formats data for HubSpot/Stripe so external changes don't break our app." |
-
-#### Plain English Card Format:
-- **What is the problem?** (1-2 simple sentences explaining what hurts or where bugs happen).
-- **How are we fixing it?** (1-2 simple sentences explaining the clean new structure).
-- **Why this helps:** (Short 3-5 word bullet points like "Bugs are fixed in one place", "Prevents unauthorized edits", "Cuts 400 lines of messy code").
-
-### What the HTML Dashboard Contains:
-- **Executive Summary Header**: Project name, date, total user stories, domain count, and anchor test target.
-- **Domain Subsystem Cards**: Clear visual breakdown of each domain module, showing its public interface and encapsulated invariants.
-- **Before vs. After Structural Blueprints**: Side-by-side diagrams illustrating how the proposed architecture prevents shallow leaky abstractions.
-- **User Story & Acceptance Criteria Explorer**: Clean, collapsible cards displaying each user story with its checkable acceptance criteria.
-- **Execution Roadmap**: Stacked sequence of implementation phases.
 
 ---
 
-## 4. MANDATORY HUMAN CONFIRMATION GATE (STOP & WAIT)
+## Phase 3: Blueprint Confirmation (**Gate 2 — Stop & Wait**)
 
 > [!IMPORTANT]
-> **STRICT EXECUTION GATE**: After formulating the architecture plan, publishing the specifications/issues, and opening the HTML dashboard, the agent **MUST ALWAYS PAUSE AND WAIT FOR HUMAN CONFIRMATION**.
->
-> **The agent MUST NOT write any implementation code, create production files, or launch implementation subagents until the user explicitly responds with approval.**
+> **MANDATORY PAUSE GATE**: After writing the specs, user stories, and opening `architecture-dashboard.html`, end your turn and wait for explicit human confirmation before creating or editing any production source or test files.
 
-### Prompt to the User:
-The agent must end its turn with a clear, concise invitation for review:
+Present this summary and stop:
 ```text
-I have compiled the complete system architecture specification, decomposed the user stories with acceptance criteria, and opened the visual Architecture Dashboard in your browser:
+I have compiled the architecture specification, decomposed the user stories, and opened the visual Architecture Dashboard in your browser:
 
-📊 Dashboard: ~/private/tmp/{project-name}/architecture-dashboard.html
-📁 Specifications: ~/private/tmp/{project-name}/specs/
-📋 User Stories & Issues: ~/private/tmp/{project-name}/issues/
+- Dashboard: ~/private/tmp/{project-name}/architecture-dashboard.html
+- Specifications: ~/private/tmp/{project-name}/specs/
+- User Stories: ~/private/tmp/{project-name}/issues/
 
-Please review the architectural blueprint, domain seams, and user stories in the opened dashboard.
-Would you like to proceed with the implementation as outlined, or are there any adjustments you would like to make first?
+Please review the domain seams and user stories. Reply "Proceed" to begin implementation, or let me know any adjustments to make first.
 ```
 
 ---
 
-## 5. Greenfield Implementation (Post-Confirmation)
+## Phase 4: Greenfield Construction (Post-Confirmation)
 
-> [!IMPORTANT]
-> **IMMEDIATE TRANSITION TO DEVELOPMENT (STRICT RULE)**:
-> Upon receiving user confirmation to proceed, the agent **MUST IMMEDIATELY BEGIN CODE IMPLEMENTATION**.
->
-> **FORBIDDEN**:
-> - **DO NOT** run E2E tests or test suites in a loop before writing code.
-> - **DO NOT** stall or hesitate.
->
-> **MANDATED ACTION**:
-> Immediately scaffold the anchor tests, build the deep domain modules/gateways, and construct the delivery adapters.
+As soon as the user approves, transition directly into writing code in this exact sequence:
 
-1. **Scaffold Anchor Truths**: Create the deterministic architectural assertions and quality gates first.
-2. **Implement Deep Modules & Gateways**: Build the core domain logic, anti-corruption gateways, and transactional invariants test-first.
-3. **Implement Delivery Adapters & Headless State**: Wire thin delivery handlers and headless state models to pure presentation components.
-4. **Verify Deterministically**: Run test suites, typecheckers, and linters. Deliver clean, production-ready software on the first pass.
+1. **Scaffold Anchor Truth Tests (`RED`)**: Write deterministic tests asserting architectural boundaries (e.g., delivery routes import only domain facades, zero circular dependencies) and core domain invariants.
+2. **Build Deep Modules & Anti-Corruption Gateways**: Implement domain repositories (encapsulating transactions, audit logs, and lifecycle rules) and external gateways (with in-memory test fakes) until unit and invariant tests turn `GREEN`.
+3. **Wire Declarative Guards & Thin Delivery Adapters**: Implement higher-order auth/tenancy guards, headless state hooks/models, and thin delivery routes/views (<30 lines each).
+4. **Verify Complete Green State**: Run the test runner, typechecker, and linter once to confirm 100% passing tests and $\ge 85\%$ coverage across all new modules.

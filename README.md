@@ -128,46 +128,45 @@ All human-facing HTML dashboards avoid academic jargon and state problems and so
 ### 1. `greenfield-architecture` (Planting from Day 1)
 - **When to use**: Starting a new repository, major feature, or microservice.
 - **Workflow**:
-  1. Interrogates the human across the 8 Pillars.
-  2. Decomposes the blueprint into concrete User Stories and GitHub Issues.
+  1. Audits existing repository context and interrogates the human only on unresolved gaps across the 8 Pillars (**Gate 1: Wait for Answers**).
+  2. Decomposes the blueprint into `ARCHITECTURE-SPEC.md` and vertical User Stories with Gherkin acceptance criteria.
   3. Publishes tracking files to `~/private/tmp/{project-name}/` and GitHub.
   4. Automatically opens `architecture-dashboard.html` in your browser.
-  5. **Pauses for Human Confirmation** before writing code.
-  6. Implements deep modules, gateways, and anchor tests.
+  5. **Pauses for Human Confirmation (Gate 2)** before writing production code.
+  6. Implements anchor tests, deep modules, gateways, and thin adapters.
 
 ### 2. `/deforestation` (Clearing Legacy Spaghetti)
 - **When to use**: Refactoring an existing tangled codebase without iterating 20 times.
 - **Workflow**:
-  1. Spawns 4 context-isolated scanner subagents (Delivery, Domain, UI State, Integrations).
-  2. Scanners write self-contained specs to `docs/specs/SPEC-*.md`.
+  1. Spawns 4 context-isolated read-only scanner subagents (Delivery, Domain, UI State, Integrations).
+  2. Orchestrator merges cross-layer findings, assigns a conflict-free Dependency DAG, and writes specs to `docs/specs/SPEC-*.md`.
   3. Automatically opens `deforestation-dashboard.html` with Before/After Mermaid diagrams.
   4. **Pauses for Human Confirmation**.
-  5. **Dispatches Parallel Subagent Swarms** across DAG tiers to execute refactors concurrently.
+  5. **Dispatches Parallel Subagent Swarms** across DAG tiers with disjoint file ownership.
   6. Verifies quality gates and deletes obsolete legacy code.
 
 ### 3. `/bushog` (Targeted Defect Clearing)
 - **When to use**: Tackling identified bug batches, defect tickets, or test failures.
 - **Workflow**:
-  1. Partitions bugs across $1 \dots N$ isolated subagents.
-  2. Automatically opens `bushog-dashboard.html`.
-  3. Subagents audit bugs against the 8 Pillars and write a failing test anchor (**RED**).
-  4. Applies root-cause deep fixes and verifies tests turn **GREEN**.
+  1. Partitions bugs across $1 \dots N$ isolated subagents with disjoint file scopes.
+  2. Subagents diagnose the broken Pillar, write a failing test anchor (**RED**), fix the root cause at the deep seam, and verify tests turn **GREEN**.
+  3. Orchestrator runs the full repository test suite to confirm zero regressions.
+  4. Compiles the verified root-cause proofs and test anchors into `bushog-dashboard.html` and automatically opens it in your browser.
 
 ### 4. `/survey` (0-Trust Quality Gate & PR)
 - **When to use**: Ready to submit completed work for review.
 - **Workflow**:
-  1. Compiles git diff into a structured PR with a 100% Acceptance Criteria matrix.
-  2. Spawns a **Ruthless 0-Trust Adversarial Code Reviewer Subagent**.
-  3. Audits code against the 8 Pillars and attempts to disprove claims.
-  4. Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`).
+  1. Compiles changes into a structured PR with a 100% Acceptance Criteria matrix.
+  2. Spawns an **Independent 0-Trust Adversarial Code Reviewer Subagent** that inspects the diff, surrounding callers, and test runs against `REVIEW-RUBRIC.md`.
+  3. Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`) with a bounded 3-round remediation loop.
 
 ### 5. `/tidy` (Release & Lifecycle Closure)
 - **When to use**: Merging approved work and releasing to production.
 - **Workflow**:
-  1. Merges PRs (`--squash` or stacked rebase) and deletes merged branches.
-  2. Closes referenced GitHub Issues with detailed resolution comments.
-  3. Moves project board cards to `Done`.
-  4. Watches CI/CD deployment, executes live HTTP health checks, and outputs an executive release summary.
+  1. Merges PRs (`--squash` or safe stacked PR retarget/rebase) and deletes merged branches.
+  2. Closes referenced GitHub Issues and local specs with resolution comments.
+  3. Moves project board cards to `Done` (when present).
+  4. Watches CI/CD deployment, executes live HTTP health checks (or local production build fallback), and outputs a release summary.
 
 ---
 
@@ -181,10 +180,12 @@ code-gardening/
 ├── install.sh                         # 1-line installation script
 ├── skills/
 │   ├── greenfield-architecture/
-│   │   └── SKILL.md                   # Day-1 discovery & deep-module design
+│   │   ├── SKILL.md                   # Day-1 discovery & deep-module construction
+│   │   ├── PILLARS.md                 # Disclosed reference: 8 Pillars & 5-Tier Seam laws
+│   │   └── DASHBOARD-STYLE.md         # Disclosed reference: Plain-English HTML & Mermaid spec
 │   ├── deforestation/
 │   │   ├── SKILL.md                   # Multi-agent legacy de-spaghettiing pipeline
-│   │   └── SPEC-TEMPLATE.md           # Authoritative specification contract
+│   │   └── SPEC-TEMPLATE.md           # Authoritative specification contract with Owned Files
 │   ├── bushog/
 │   │   └── SKILL.md                   # 1..N subagent bug batch clearing
 │   ├── survey/

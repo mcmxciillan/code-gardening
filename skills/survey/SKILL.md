@@ -1,96 +1,77 @@
 ---
 name: survey
-description: Generates comprehensive Pull Requests linked to specs and acceptance criteria, and spawns a ruthless 0-trust adversarial code reviewer subagent well-versed in the 8 Pillars of greenfield-architecture to perform an uncompromising quality audit before merging.
+description: Spec-traceable PR compilation and zero-trust adversarial code review. Use when preparing a pull request, auditing completed work before merge, or running /survey.
 ---
 
-# Survey (/survey)
+# Survey (`/survey`)
 
-Transform completed work into a fully documented Pull Request with 100% acceptance criteria traceability, and submit the code to an **independent, ruthless 0-trust Adversarial Code Reviewer Subagent** before publication or merge.
-
-Where `/deforestation` and `/bushog` execute the engineering work, `/survey` is the authoritative quality control gate that inspects the land, validates the boundaries, and guarantees that zero architectural debt or unverified assumptions leak into the main codebase.
+Compile completed engineering work into a traceable Pull Request and subject the changes to an **independent, zero-trust Adversarial Reviewer subagent** before publishing or merging.
 
 ```mermaid
 graph TD
-    CompletedWork[Completed Work / Commits] --> PRGen[Phase 1: Compile PR & Trace Specs/Tickets]
-    PRGen --> SpawnReviewer[Phase 2: Spawn 0-Trust Adversarial Reviewer Subagent]
-    
-    subgraph "Ruthless 0-Trust Adversarial Audit"
-        Audit1[Audit 100% Acceptance Criteria Fulfillment] --> Audit2[Audit Code against 8 Pillars of Architecture]
-        Audit2 --> Disproof[Attempt to Disprove Claims & Find Edge Cases]
-        Disproof --> Scorecard[Generate 8-Pillars Scorecard & Verdict]
-    end
-
-    SpawnReviewer --> Audit1
-    Scorecard --> VerdictCheck{Review Verdict}
-    VerdictCheck -->|REQUEST_CHANGES / VETO| AuthorFix[Author Agent Rectifies Findings]
-    AuthorFix --> SpawnReviewer
-    VerdictCheck -->|APPROVED| PublishPR[Phase 3: Final PR Artifact / Publication]
+    Work["Completed Commits / Working Tree"] --> PRGen["Phase 1: Compile PR from PR-TEMPLATE.md"]
+    PRGen --> Spawn["Phase 2: Dispatch Independent 0-Trust Reviewer Subagent"]
+    Spawn --> Audit["Inspect Diff + Callers, Audit 8 Pillars & Verify Tests"]
+    Audit --> Verdict{"Verdict"}
+    Verdict -->|"REQUEST_CHANGES / VETO (<= 3 rounds)"| Fix["Author Fixes Findings & Re-Runs Tests"]
+    Fix --> Spawn
+    Verdict -->|APPROVED| Publish["Phase 3: Publish Verified PR"]
 ```
 
 ---
 
-## Phase 1: Pull Request Compilation & Spec Traceability
+## Phase 1: Pull Request Compilation & Traceability
 
-The agent gathers the git diff and inspects all referenced specifications (`docs/specs/SPEC-*.md`), issue tickets, or ADRs:
-
-1. **Extract Diff & File Seams**: Inspect `git status`, `git diff`, and modified file paths.
-2. **Map Acceptance Criteria**: Extract every bulleted acceptance criterion from the originating spec/ticket.
-3. **Draft Pull Request Document**: Format the PR using `PR-TEMPLATE.md` with:
-   - Concise, conventional PR title (e.g., `feat(content): deepen CommentaryRepository with SEC 204-2 audit cascades`).
-   - Architectural summary and Before/After diagrams.
-   - Traceability table mapping each Acceptance Criterion to exact test assertions.
-   - 8-Pillars Compliance checklist.
+1. **Inspect Changes & Originating Specs**:
+   - Determine the base ref (`BASE_REF`, e.g., `main` or merge-base) and inspect `git status` and `git diff ${BASE_REF}...HEAD --stat`.
+   - Locate all originating specifications (`docs/specs/SPEC-*.md`), user stories (`US-*`), or issue tickets.
+2. **Draft the Pull Request**:
+   - Populate [`PR-TEMPLATE.md`](PR-TEMPLATE.md) and save the draft to `~/private/tmp/{project-name}/PR-DRAFT.md`:
+     - **Conventional Title**: e.g., `feat(content): encapsulate audit cascades in CommentaryRepository`.
+     - **Before / After Mermaid Diagram**: Contrasting prior coupling with the new deep seam.
+     - **Acceptance Criteria Matrix**: Map every bulleted requirement from the spec/ticket to the exact `file:line` test assertion that proves it.
+     - **Test Runner Output**: Run the test suite and record the real output and coverage metrics.
 
 ---
 
-## Phase 2: Spawning the Ruthless 0-Trust Reviewer Subagent
+## Phase 2: Independent Zero-Trust Adversarial Review
 
-The agent **MUST NOT** review its own code. It spawns a dedicated subagent with an isolated context window to act as an adversarial reviewer.
+Delegate the code audit to an isolated subagent (`invoke_subagent`) so the author context never grades its own work. Pass file paths and git refs rather than pasting large diffs inline:
 
-### The Adversarial Reviewer Prompt Contract:
 ```text
-You are an uncompromising, ruthless 0-trust Code Reviewer and Principal Software Architect.
+You are an independent, zero-trust Principal Architect performing an adversarial review for /survey.
 
-YOUR MISSION:
-Review the candidate PR diff against the originating Specification and the 8 Pillars of Greenfield Architecture.
-Do NOT compliment the author or rubber-stamp the changes. Your job is to actively attempt to DISPROVE that this code is production-ready, identify unhandled edge cases, and flag any architectural erosion.
+YOUR MANDATE:
+Actively attempt to DISPROVE that the candidate changes satisfy the specification and the 8 Pillars of Greenfield Architecture. Identify unverified claims, missing edge cases, leaky seams, and shallow tests.
 
 INPUTS:
-1. Originating Spec / Ticket: [Path to spec file or acceptance criteria list]
-2. Candidate Git Diff: [Full git diff or commit range]
-3. Rubric: Consult `~/.gemini/config/skills/survey/REVIEW-RUBRIC.md`.
+1. Review Rubric: Read `~/.gemini/config/skills/survey/REVIEW-RUBRIC.md`.
+2. Originating Spec / Ticket: `[Path to spec, issue file, or acceptance criteria]`
+3. Draft PR & AC Matrix: `~/private/tmp/{project-name}/PR-DRAFT.md`
+4. Git Range to Inspect: Run `git diff <BASE_REF>...HEAD` (or inspect uncommitted changes via `git diff HEAD`).
 
-AUDIT MANDATE:
-1. Verify 100% of the Acceptance Criteria. Is there any missing requirement or untested edge case?
-2. Audit the 8 Pillars:
-   - Pillar 1: Are types strict (no `any` or loose casts)?
-   - Pillar 2: Are transactions, audit logs, and versioning snapshots atomic?
-   - Pillar 3: Are external systems isolated behind Anti-Corruption Gateways?
-   - Pillar 4: Are role checks declarative higher-order guards (fail-closed)?
-   - Pillar 5: Is UI state decoupled into headless hooks (no raw alerts/reloads)?
-   - Pillar 6: Is code locality respected (single-consumer co-located, barrel facades)?
-   - Pillar 7: Are there any N+1 queries or unindexed lookups?
-   - Pillar 8: Are tests deterministic with >=85% branch/statement coverage?
+AUDIT STEPS:
+1. Read the originating spec and verify every Acceptance Criterion in `PR-DRAFT.md` against the actual implementation and test files at the cited lines.
+2. Inspect the modified files AND their surrounding callers to check all 8 Pillars in `REVIEW-RUBRIC.md`.
+3. Execute the relevant test suite to confirm tests genuinely pass and fail when invariants are violated.
 
-OUTPUT FORMAT:
-Return a structured Markdown report with:
-- **Verdict**: [APPROVED | REQUEST_CHANGES | BLOCKING_VETO]
-- **Acceptance Criteria Verification**: Table with Pass/Fail and citations.
-- **8-Pillars Scorecard**: Grade and specific line citations for any violations.
-- **Actionable Findings**: Categorized by `[CRITICAL/BLOCKER]`, `[MAJOR ARCHITECTURAL SMELL]`, or `[MINOR POLISH]`.
+REQUIRED OUTPUT FORMAT:
+- **Verdict**: `APPROVED` | `REQUEST_CHANGES` | `BLOCKING_VETO`
+- **Acceptance Criteria Audit**: Table showing each AC, `PASS`/`FAIL`, and `file:line` evidence.
+- **8-Pillars Scorecard**: Pass/Fail per applicable pillar with exact `file:line` citations.
+- **Findings**: Grouped under `[BLOCKER]`, `[MAJOR SMELL]`, or `[MINOR]` with concrete remediation instructions.
 ```
 
 ---
 
-## Phase 3: Verdict Evaluation & Feedback Loop
+## Phase 3: Remediation Loop & Publication
 
-The Orchestrator evaluates the reviewer's structured verdict:
+Evaluate the reviewer subagent's verdict (maximum **3 review rounds**):
 
-1. **If `REQUEST_CHANGES` or `BLOCKING_VETO`**:
-   - The Orchestrator or implementing agent addresses every `[CRITICAL/BLOCKER]` and `[MAJOR ARCHITECTURAL SMELL]`.
-   - New unit tests or structural refactors are applied.
-   - The diff is re-submitted to the reviewer subagent until an `APPROVED` verdict is achieved.
-
-2. **If `APPROVED`**:
-   - The PR is finalized.
-   - The verified PR description is rendered to the user and published via GitHub PR creation tools or local repository artifacts.
+1. **On `REQUEST_CHANGES` or `BLOCKING_VETO`**:
+   - Resolve every `[BLOCKER]` and `[MAJOR SMELL]` at the deep module seam and add regression tests for any uncovered edge cases.
+   - Update `PR-DRAFT.md` with the new test evidence and re-dispatch the reviewer subagent.
+   - If a finding remains disputed after 3 rounds due to an external constraint or spec conflict, surface the trade-off to the human for adjudication.
+2. **On `APPROVED`**:
+   - Append the verified **0-Trust Review Scorecard** summary to `PR-DRAFT.md`.
+   - Create or update the remote GitHub Pull Request (`gh pr create` / `gh pr edit` or GitHub MCP) when a remote repository is configured, and present the final PR summary to the user.

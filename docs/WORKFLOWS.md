@@ -16,49 +16,43 @@ graph LR
 
 ## Workflow 1: Building a New Feature or Project (`greenfield-architecture`)
 
-1. **Invoke the Skill**: The agent begins by asking targeted discovery questions across the 8 Pillars.
-2. **Review the Specifications & User Stories**:
-   - The agent writes the system architecture specification and decomposes it into vertical User Stories with Gherkin acceptance criteria.
-   - Publishes tickets locally (`~/private/tmp/{project-name}/`) and to GitHub.
-3. **Inspect the Visual HTML Dashboard**:
-   - The agent opens `architecture-dashboard.html` in your browser.
-   - Review the Before/After blueprints and user stories.
-4. **Approve to Proceed (Human-in-the-Loop Gate)**:
-   - The agent pauses and waits. Respond with `"Proceed"` or request adjustments.
-5. **Immediate Construction**:
-   - The agent scaffolds anchor tests, builds deep domain modules/gateways, and wires thin delivery adapters.
+1. **Context Audit & Discovery (Gate 1)**:
+   - The agent inspects the repository first, then asks targeted questions covering only the unresolved gaps across the 8 Pillars and waits for your answers.
+2. **Specifications & User Stories**:
+   - Once answered, the agent writes `ARCHITECTURE-SPEC.md` and decomposes it into vertical User Stories with Gherkin acceptance criteria (`~/private/tmp/{project-name}/` and GitHub).
+3. **Inspect the Visual HTML Dashboard (Gate 2)**:
+   - The agent opens `architecture-dashboard.html` in your browser and pauses for confirmation.
+   - Respond with `"Proceed"` or request adjustments.
+4. **Immediate Construction**:
+   - The agent scaffolds failing anchor tests (`RED`), builds deep domain modules/gateways, wires thin delivery adapters (`<30 lines`), and verifies `GREEN`.
 
 ---
 
 ## Workflow 2: Modernizing a Legacy Spaghetti Codebase (`/deforestation`)
 
 1. **Invoke `/deforestation`**:
-   - The orchestrator spawns 4 context-isolated scanner subagents (Delivery, Domain, UI State, Integrations).
-2. **Review the Modernization Plan**:
-   - Scanners write self-contained specs to `docs/specs/`.
-   - The orchestrator compiles and automatically opens `deforestation-dashboard.html` in your browser.
+   - The orchestrator spawns 4 context-isolated read-only scanner subagents (Delivery, Domain, UI State, Integrations).
+2. **Seam Deduplication & Modernization Plan**:
+   - The orchestrator merges cross-layer findings into unified vertical seams with disjoint file scopes, writes `docs/specs/SPEC-*.md`, and opens `deforestation-dashboard.html` in your browser.
 3. **Approve to Proceed (Human-in-the-Loop Gate)**:
    - The orchestrator pauses and waits for your confirmation.
-4. **Swarm Fan-Out Execution**:
-   - The orchestrator constructs a dependency DAG and dispatches parallel subagent swarms across independent tiers.
+4. **Tiered Swarm Fan-Out**:
+   - The orchestrator dispatches parallel subagent swarms tier by tier across the Dependency DAG.
    - Workers refactor modules, write unit tests, and report back.
 5. **Verification & Cutover**:
-   - All tests pass, legacy dead code is deleted, and the codebase is completely modernized in a single campaign.
+   - Full test suite and anchor checks pass, legacy dead code is deleted, and the dashboard is updated to green.
 
 ---
 
 ## Workflow 3: Clearing Bug Batches (`/bushog`)
 
-1. **Invoke `/bushog`** with a list of issues or defect tickets.
-2. **Triage & Worker Allocation**:
-   - The orchestrator sizes $1 \dots N$ subagents based on subsystem boundaries.
-   - Automatically opens `bushog-dashboard.html` showing root-cause analysis.
+1. **Invoke `/bushog`** with a list of issues, stack traces, or failing tests.
+2. **Triage & Disjoint Worker Allocation**:
+   - The orchestrator partitions bugs across $1 \dots N$ subagents with strictly non-overlapping file scopes.
 3. **8-Pillars Root-Cause Rectification**:
-   - Each subagent writes a failing test anchor (RED).
-   - Fixes the bug at the deep domain seam (not a shallow UI patch).
-   - Verifies the test passes (GREEN).
-4. **Regression Verification**:
-   - Full test suite passes with zero regressions.
+   - Each subagent identifies the broken Pillar, writes a failing test anchor (`RED`), fixes the bug at the deep domain seam, and verifies the subsystem suite turns `GREEN`.
+4. **Repository Verification & Visual Proof Dashboard**:
+   - Full repository test suite passes with zero regressions, and the orchestrator opens `bushog-dashboard.html` displaying the verified root causes, Before/After diagrams, and test anchors.
 
 ---
 
