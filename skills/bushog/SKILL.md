@@ -49,7 +49,7 @@ You are resolving assigned defect(s) in the /bushog pipeline.
 
 ASSIGNED DEFECT(S): [Bug IDs, symptoms, stack traces, or failing test names]
 OWNED SUBSYSTEM / FILES: [Exclusive directory or file paths]
-ARCHITECTURAL LAWS: Read `~/.gemini/config/skills/greenfield-architecture/PILLARS.md`.
+ARCHITECTURAL LAWS: Read `~/.gemini/config/skills/greenfield-architecture/PILLARS.md` (or `skills/greenfield-architecture/PILLARS.md`). If `GLOSSARY.md` or `docs/specs/` exist in the repository, honor their canonical seam names and documented domain invariants.
 
 EXECUTION MANDATE:
 1. DIAGNOSE PILLAR BREAKDOWN: Identify which of the 8 Pillars failed at the root cause:

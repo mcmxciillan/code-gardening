@@ -22,7 +22,7 @@ graph LR
 
 ## Phase 1: Context Audit & 8-Pillar Discovery (**Gate 1 — Stop for Answers**)
 
-1. **Audit the environment first**: Inspect the repository (`package.json`, schema files, existing directory layout, and user prompt) to extract every architectural fact already decided. Never ask the human what the codebase already answers.
+1. **Audit the environment first**: Inspect the repository (`package.json`, schema files, existing directory layout, and user prompt) to extract every architectural fact already decided. If `GLOSSARY.md`, `AGENTS.md`, or `docs/specs/` already exist in the repository, adopt their canonical domain and seam vocabulary and update `GLOSSARY.md` when introducing new domain entities. Never ask the human what the codebase already answers.
 2. **Identify unresolved gaps across the 8 Pillars**:
    - **Pillar 1 (Entities & Cardinality)**: Core domain entities, `1:1` / `1:N` / `N:M` relations, hierarchy/polymorphism, composite read rollups.
    - **Pillar 2 (Invariants & Lifecycle)**: Non-negotiable compliance rules (audit trail, revision history, soft-delete), valid state transitions (`draft -> published -> archived`), and atomic transaction cascades.
@@ -100,6 +100,6 @@ Please review the domain seams and user stories. Reply "Proceed" to begin implem
 As soon as the user approves, transition directly into writing code in this exact sequence:
 
 1. **Scaffold Anchor Truth Tests (`RED`)**: Write deterministic tests asserting architectural boundaries (e.g., delivery routes import only domain facades, zero circular dependencies) and core domain invariants.
-2. **Build Deep Modules & Anti-Corruption Gateways**: Implement domain repositories (encapsulating transactions, audit logs, and lifecycle rules) and external gateways (with in-memory test fakes) until unit and invariant tests turn `GREEN`.
+2. **Build Deep Modules & Anti-Corruption Gateways**: Implement domain repositories (encapsulating transactions, audit logs, and lifecycle rules) and external gateways (with in-memory test fakes) until unit and invariant tests turn `GREEN`. Favor native runtime primitives or compact `<10KB` internal modules over heavy third-party utility libraries (`/bonsai` Shear 5).
 3. **Wire Declarative Guards & Thin Delivery Adapters**: Implement higher-order auth/tenancy guards, headless state hooks/models, and thin delivery routes/views (<30 lines each).
 4. **Verify Complete Green State**: Run the test runner, typechecker, and linter once to confirm 100% passing tests and $\ge 85\%$ coverage across all new modules.

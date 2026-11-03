@@ -7,9 +7,9 @@ Evaluate every change with zero self-preferential bias: verify every claim again
 ---
 
 ## Gate 1: Acceptance Criteria Parity (Spec-to-Code Disproof)
-- **Check**: Does the code and test suite satisfy 100% of the acceptance criteria in the originating spec or issue?
-- **Disproof Test**: Search for boundary conditions named or implied by the spec (empty inputs, null/optional fields, concurrent writes, upstream timeouts, unauthorized actors) that lack explicit handling and test assertions.
-- **Veto Trigger (`BLOCKING_VETO`)**: Any acceptance criterion left unimplemented, stubbed/mocked in production code, or lacking a real test assertion at the cited `file:line`.
+- **Check**: Does the code, documentation, and verification suite satisfy 100% of the acceptance criteria in the originating spec, issue, or campaign summary (`PR-DRAFT.md`)?
+- **Disproof Test**: Search for boundary conditions named or implied by the criteria (empty inputs, null/optional fields, concurrent writes, upstream timeouts, unauthorized actors, or broken doc links) that lack explicit handling and verification.
+- **Veto Trigger (`BLOCKING_VETO`)**: Any acceptance criterion left unimplemented, stubbed/mocked in production code, or lacking real verification evidence (an automated test assertion at `file:line` for code changes, or a deterministic file/link/diff verification proof for `/bonsai` and `/seed-catalog` changes).
 
 ---
 
@@ -48,3 +48,21 @@ Mark a pillar `N/A` only when the change genuinely does not touch that layer (e.
 ### 8. Anchor Quality Gates & Test Rigor (Pillar 8)
 - **Pass**: Deterministic tests exercise the module's public interface across happy paths, edge cases, and failure/auth rejections with $\ge 85\%$ coverage on touched modules; zero direct storage imports in delivery routes.
 - **Flag**: Tautological tests that only assert mock calls without testing behaviour, skipped/flaky tests, or failing typecheck/build steps.
+
+---
+
+## Gate 3: Shared Vocabulary & Campaign-Specific Invariants (When Applicable)
+
+Apply the sub-gates below whenever the corresponding repository artifact or campaign type is present:
+
+### 1. Shared Vocabulary Alignment (When `GLOSSARY.md` Exists in Repo)
+- **Pass**: New or modified modules, classes, functions, and docs use canonical terms from `GLOSSARY.md` and honor its 5-Tier Seam naming conventions.
+- **Flag**: Introducing or re-introducing banned `_Avoid_` synonyms in identifiers, route paths, or documentation.
+
+### 2. Bonsai Pruning Audit (When Reviewing `/bonsai` Changes)
+- **Pass**: Achieves net-negative source LOC (`git diff --stat`) or removes a heavy external dependency (`>100KB–1MB+`) in exchange for a native runtime primitive or `<10KB` tested internal module; characterization tests cover touched seams; expressions remain flat and readable.
+- **Flag**: Obfuscated "code golf" (nested ternaries, unreadable 1-liners), inlining a 5-Tier deep module back into a route/view, or leaving uninstalled dead dependencies in `package.json`.
+
+### 3. Seed Catalog & Documentation Audit (When Reviewing `/seed-catalog` Changes)
+- **Pass**: `0` broken links or phantom file/script paths (`test -e`), `0` unquoted uses of banned `_Avoid_` terms across updated docs, and `AGENTS.md` / `CLAUDE.md` kept tight (<80 lines) with zero no-op filler.
+- **Flag**: Hallucinated file paths, stale CLI commands not in `package.json`/manifests, or vague "component/service" taxonomy in `GLOSSARY.md` Section 2.

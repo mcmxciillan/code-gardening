@@ -47,9 +47,9 @@ Merge in strict topological order (Tier 1 parent $\rightarrow$ Tier 2 $\rightarr
 
 ---
 
-## Phase 3: Issue, Story & Spec Closure
+## Phase 3: Issue, Story & Spec Closure (When Present)
 
-Locate all tickets, user stories (`US-*`), and specs (`SPEC-*`) linked in the merged PR:
+Locate any tickets, user stories (`US-*`), and specs (`SPEC-*`) linked in the merged PR (if the PR came from `/bonsai`, `/seed-catalog`, or a standalone branch with no linked issues or spec files, skip this phase cleanly and record `N/A`):
 
 1. **Remote GitHub Issues**: Once the merge commit is on the base branch, close each referenced issue (`gh issue close <ISSUE-NUM>`) with a concise resolution comment:
    ```markdown
@@ -90,7 +90,7 @@ Conclude with a concise release report for the human:
 # Release Finalized (`/tidy`)
 
 - **Merged**: PR #<NUM> — `<Title>` (`<SHORT-SHA>`, feature branch deleted)
-- **Closed Issues / Specs**: `<#101, US-01, SPEC-01>`
+- **Closed Issues / Specs**: `<#101, US-01, SPEC-01 | N/A>`
 - **Project Board**: `<Moved N items to Done | N/A>`
 - **Release Health**: `<CI Run Passed / Local Production Build Green / Live URL 200 OK>`
 ```
