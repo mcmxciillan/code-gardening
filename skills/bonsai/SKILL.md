@@ -1,6 +1,6 @@
 ---
 name: bonsai
-description: Surgical code pruning, expression compression, dependency weight reduction, and dead-weight elimination while preserving 100% of behavior. Use when slimming down a codebase, shortening verbose functions, replacing bloated libraries with lean custom modules, deleting dead code, or running /bonsai.
+description: Surgical code pruning, 12-to-3 line expression compression, and 1MB-to-10KB dependency replacement with 100% behavior preservation. Use when slimming a codebase, collapsing shallow wrappers, replacing heavy third-party libraries with lean internal modules, deleting dead code, or running /bonsai.
 ---
 
 # Bonsai (`/bonsai`)
@@ -30,6 +30,7 @@ graph TD
 
 1. **Record the Starting Baseline**:
    - Measure baseline source line counts (`git ls-files <scope> | xargs wc -l`), inspect third-party dependency sizes (`package.json` + `du -sh node_modules/* 2>/dev/null | sort -hr | head -n 25` or language equivalent), and verify the existing test suite and typechecker pass (`GREEN`).
+   - **Shared Context Check (When Present — Optional)**: If `GLOSSARY.md` or `docs/specs/` exist in the repository, read them so any newly extracted `<10KB` module or consolidated guard uses canonical project terminology and preserves documented seam contracts. (`/bonsai` never requires these files and runs 100% standalone when they are absent.)
 2. **Choose Execution Topology by Scope**:
 
 | Target Scope | Execution Mode | Worker Allocation |
@@ -77,7 +78,7 @@ You are a surgical pruning worker in the /bonsai pipeline.
 
 OWNED SUBSYSTEM / FILES: [Exclusive file paths]
 PRUNING TARGETS: [Identified Shear 1..5 opportunities & heavy libraries to replace]
-REFERENCE: Read `~/.gemini/config/skills/bonsai/PRUNING-PATTERNS.md` and `~/.gemini/config/skills/greenfield-architecture/PILLARS.md`.
+REFERENCE: Read `~/.gemini/config/skills/bonsai/PRUNING-PATTERNS.md` and `~/.gemini/config/skills/greenfield-architecture/PILLARS.md` (or the repo's `skills/` equivalents if running from a local checkout). If `GLOSSARY.md` exists at the repository root, use its canonical domain and seam names.
 
 EXECUTION MANDATE:
 1. CHARACTERIZATION ANCHOR FIRST: Before pruning any function or replacing a third-party library seam that lacks test coverage, write a concise characterization test locking its current inputs, outputs, and error behavior. Confirm it passes (GREEN).
@@ -88,8 +89,8 @@ EXECUTION MANDATE:
    - Delete dead functions, unused types, zombie branches, and commented-out code.
    - Replace bloated third-party libraries with native runtime APIs or a focused <10KB reusable internal capability behind a clean seam.
 3. GUARDRAILS:
-   - Idiomatic clarity over obfuscated "code golf" (no nested ternaries or unreadable 1-liners).
-   - Never inline a deep module (Repository, Gateway, Policy Guard, Headless State Model) back into a route or view.
+   - Write flat, typed, step-debuggable expressions (guard clauses, lookup maps, `.filter().map()` pipelines) rather than nested ternaries or obfuscated "code golf" 1-liners.
+   - Prune *inside* deep modules and *at* thin adapters while keeping every 5-Tier seam (Repository, Gateway, Policy Guard, Headless State Model) intact behind its public interface.
 4. VERIFY GREEN & NET-NEGATIVE FOOTPRINT:
    - Run the subsystem test suite and typechecker until 100% GREEN.
    - Run `git diff --stat -- <owned-files>` and verify either net-negative source LOC (`lines deleted > lines added`) or elimination of a heavy external dependency in exchange for a compact (<10KB) internal module.

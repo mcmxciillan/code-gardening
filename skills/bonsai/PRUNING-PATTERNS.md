@@ -145,8 +145,8 @@ For every non-core dependency in `package.json` / `Cargo.toml` / `pyproject.toml
 
 ## The 4 Bonsai Safety Guardrails
 
-1. **Idiomatic Clarity Over Code Golf**: Never sacrifice readability, type safety, or stack-trace debuggability to cram logic onto a single line. Avoid nested ternaries, cryptic bitwise tricks, or mutating `.reduce()` one-liners.
-2. **Preserve Deep Architectural Seams**: Never inline a Domain Repository (Pillar 2), Anti-Corruption Gateway (Pillar 3), Declarative Policy Guard (Pillar 4), or Headless State Model (Pillar 5) into a route or view. Prune *inside* deep modules and *at* thin adapters.
+1. **Idiomatic Clarity Over Code Golf**: Write flat, typed, step-debuggable expressions (early-return guard clauses, lookup maps, `.filter().map()` pipelines) that are faster to read than the ceremony they replace. Avoid nested ternaries, cryptic bitwise tricks, or mutating `.reduce()` one-liners.
+2. **Preserve Deep Architectural Seams**: Prune *inside* deep modules and *at* thin adapters while keeping every 5-Tier seam—Domain Repository (Pillar 2), Anti-Corruption Gateway (Pillar 3), Declarative Policy Guard (Pillar 4), and Headless State Model (Pillar 5)—intact behind its public interface.
 3. **Characterization Anchor Before Pruning**: If a target function or replaced library seam lacks automated test coverage, write a concise characterization test first, observe `GREEN`, prune or swap the dependency for the lean capability, and verify `GREEN`.
 4. **Hard Net-Negative Footprint Rule**: Every pruning unit must achieve either:
    - **Net-Negative Source LOC** (`lines deleted > lines added` in `git diff --numstat`), **OR**

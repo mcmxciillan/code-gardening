@@ -8,8 +8,9 @@ graph LR
     B["2. /deforestation<br>(Legacy Code Overhauls)"] --> G
     C["3. /bushog<br>(Targeted Defect Batches)"] --> G
     H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
-    G --> D["5. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["6. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    S["5. /seed-catalog<br>(Shared Vocabulary & Docs)"] --> G
+    G --> D["6. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["7. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -69,23 +70,35 @@ graph LR
 
 ---
 
-## Workflow 5: Quality Gate & PR Review (`/survey`)
+## Workflow 5: Shared Vocabulary, Semantic Renames & Documentation Synthesis (`/seed-catalog`)
 
-1. **Invoke `/survey`** on completed work.
-2. **PR Compilation**:
-   - Extracts git diff, links originating specs/tickets, and creates a 100% checkable Acceptance Criteria matrix.
-3. **0-Trust Adversarial Code Review**:
-   - Spawns an independent subagent with a zero-trust mandate.
-   - Audits code against the 8 Pillars and attempts to disprove claims.
-   - Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`).
+1. **Invoke `/seed-catalog`** on an existing or newly architected repository.
+2. **Terminology, Identifier & Seam Inventory**:
+   - The orchestrator scans schemas, domain modules, routes, gateways, state models, exported functions/classes/files, and existing docs/specs to uncover synonym drift (e.g., *Tenant* vs. *Workspace* vs. *Account*), vague module labels, and opaque identifiers (`utils.ts`, `processData()`).
+3. **Canonical Vocabulary & Semantic Rename Catalog (`GLOSSARY.md`)**:
+   - Creates or updates `GLOSSARY.md` with three sections: **Domain Ubiquitous Language** (with `_Avoid_:` synonym bans), the **Deep Module, Subsystem & Seam Catalog** mapping each module to its 5-Tier Seam role, and **Semantic Rename Recommendations** proposing clearer names for functions, classes, and files.
+4. **Core Documentation Overhaul & Verification**:
+   - Creates or updates `README.md`, `AGENTS.md` / `CLAUDE.md`, and `docs/`, verifies 100% of file paths, scripts, and canonical terms on disk (`0` phantom links), opens `seed-catalog-dashboard.html` in your browser, and **pauses for confirmation** before executing any approved code renames in Phase 6.
 
 ---
 
-## Workflow 6: Release & Lifecycle Closure (`/tidy`)
+## Workflow 6: Quality Gate & PR Review (`/survey`)
+
+1. **Invoke `/survey`** on completed work (from any skill or standalone branch).
+2. **PR Compilation**:
+   - Extracts git diff, links originating specs/tickets (when present) or campaign deliverables, and creates a 100% checkable Acceptance Criteria matrix in `PR-DRAFT.md`.
+3. **0-Trust Adversarial Code Review**:
+   - Spawns an independent subagent with a zero-trust mandate.
+   - Audits code and docs against `REVIEW-RUBRIC.md` (8 Pillars, `GLOSSARY.md` vocabulary alignment when present, `/bonsai` net-negative footprint, and `/seed-catalog` link integrity).
+   - Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`) and publishes the GitHub PR.
+
+---
+
+## Workflow 7: Release & Lifecycle Closure (`/tidy`)
 
 1. **Invoke `/tidy`** once a PR is approved.
 2. **Pre-Merge Health Check**: Verifies CI/CD checks and tree cleanliness.
 3. **Merge & Clean**: Merges PR (Squash/Rebase) and deletes the feature branch.
-4. **Close Issues**: Updates referenced GitHub Issues/tickets to `Closed` with resolution comments.
-5. **Project Board**: Moves cards to `Done`.
+4. **Close Issues & Specs (When Present)**: Updates referenced GitHub Issues/tickets and local `SPEC-*` / `US-*` files to `Closed` / `COMPLETED` (or skips cleanly if none exist).
+5. **Project Board (When Present)**: Moves cards to `Done`.
 6. **Deployment Check**: Watches build pipeline, verifies HTTP 200 health check, and outputs a release summary.

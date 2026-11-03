@@ -45,7 +45,7 @@ Once all 4 scanners report back, set `PROJECT_NAME` (`basename "$(git rev-parse 
 
 ### 1. Deduplicate & Assign Sequential Specs
 Cross-layer findings often describe two ends of the same seam (e.g., Scanner 1 flags a route calling the DB directly; Scanner 2 flags the missing repository method).
-1. **Merge** related findings into unified, vertical subsystem seams with **strictly disjoint file write scopes** within each execution tier.
+1. **Merge** related findings into unified, vertical subsystem seams with **strictly disjoint file write scopes** within each execution tier. If `GLOSSARY.md` exists at the repository root, use its canonical domain and 5-Tier seam names and incorporate applicable Section 3 Semantic Rename Proposals into the specs.
 2. **Assign sequential IDs** (`SPEC-01`, `SPEC-02`, ...) ordered into a Dependency DAG:
    - **Tier 1**: Foundational Deep Domain Repositories & Anti-Corruption Gateways.
    - **Tier 2**: Declarative Policy Guards & Thin Delivery Adapters.
@@ -95,7 +95,7 @@ Supply each worker with this self-contained prompt:
 ```text
 You are an implementation worker in the /deforestation swarm executing SPEC-<ID>.
 
-1. ARCHITECTURAL LAWS: Read `~/.gemini/config/skills/greenfield-architecture/PILLARS.md`.
+1. ARCHITECTURAL LAWS: Read `~/.gemini/config/skills/greenfield-architecture/PILLARS.md` (or `skills/greenfield-architecture/PILLARS.md`). If `GLOSSARY.md` exists at the repository root, honor its canonical domain and seam names.
 2. ASSIGNED SPECIFICATION: Read and execute `docs/specs/SPEC-<ID>-<SLUG>.md`.
 3. EXCLUSIVE FILE SCOPE: Only create or modify the files listed under "Owned Files" in your spec.
 
@@ -103,7 +103,7 @@ EXECUTION STEPS:
 1. Scaffold the deep module, gateway, guard, or headless model with strict types and public interface.
 2. Encapsulate all invariants, transactions, and error handling defined in the spec.
 3. Write unit and invariant tests exercising the public interface (target >=85% branch/statement coverage).
-4. Refactor the assigned callers into thin adapters (<30 lines) and remove dead local helpers.
+4. Refactor the assigned callers into thin adapters (<30 lines), compress verbose boilerplate (`12 -> 3 lines`), and delete dead local helpers (`/bonsai` Deletion Test).
 5. Run the targeted test suite and typechecker for your subsystem until 100% GREEN.
 6. Reply with: created/modified files, public seam signature, and test runner output.
 ```
