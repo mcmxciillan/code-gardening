@@ -124,6 +124,7 @@ All human-facing HTML dashboards avoid academic jargon and state problems and so
 | *"Monolithic presentation component with entangled state dispatch"* | **"One giant 600-line screen is handling visual layout, button clicks, data fetching, and error popups all at once."** |
 | *"Enforce immutable provenance snapshots within transactional boundary"* | **"Automatically saves a revision history record whenever a post is updated so nothing is lost."** |
 | *"Higher-order declarative policy interception"* | **"A single security check that automatically blocks non-admin users before running actions."** |
+| *"Transitive dependency bloat with sub-1% symbol utilization"* | **"We installed a 1.4MB library just to format a date that a 15-line helper handles natively."** |
 
 ---
 
@@ -158,13 +159,20 @@ All human-facing HTML dashboards avoid academic jargon and state problems and so
   4. Compiles the verified root-cause proofs and test anchors into `bushog-dashboard.html` and automatically opens it in your browser.
 
 ### 4. `/bonsai` (Surgical Code & Dependency Pruning)
-- **When to use**: Slimming down bloated files/subsystems, shortening verbose 12-line loops/conditionals into 3 idiomatic lines, replacing heavy 1MB third-party libraries with reusable <10KB custom capabilities, collapsing pass-through wrappers, and purging dead code without altering functionality.
+- **Description**: Surgical code pruning, expression compression, dependency weight reduction, and dead-weight elimination while preserving 100% of behavior. Treats both source lines and third-party dependencies as liabilities: if 12 lines of ceremony can be written clearly in 3 lines—or a 1MB library can be replaced by a reusable <10KB custom capability—prune the excess.
+- **When to use**: Slimming down a codebase, shortening verbose functions, replacing bloated libraries with lean custom modules, deleting dead or over-engineered code, or running `/bonsai`.
+- **The 5 Pruning Shears (`skills/bonsai/PRUNING-PATTERNS.md`)**:
+  1. **Shear 1 — Expression & Control-Flow Compression (`12 -> 3 Lines`)**: Replaces imperative accumulator loops with declarative `.filter().map()` pipelines, flattens nested `if/else` pyramids into early-return guard clauses, swaps verbose `switch` chains for lookup maps + nullish coalescing (`??`, `?.`), and strips redundant intermediate variables.
+  2. **Shear 2 — The Deletion Test (YAGNI & Shallow Indirection)**: Inlines single-caller wrappers, deletes middleman pass-through services, collapses single-adapter interfaces, and removes speculative config flags never varied by callers.
+  3. **Shear 3 — Deduplication & Seam Consolidation**: Collapses copy-pasted route auth/validation/try-catch blocks into declarative Pillar 4 guards, unifies near-duplicate functions, and replaces synchronized `useState` + `useEffect` derived state mirrors with 1-line inline derivations.
+  4. **Shear 4 — Dead Code, Zombie Branches & Orphan Purge**: Eliminates unreferenced exports, types, barrel re-exports, unreachable branches, retired feature flags, and commented-out code.
+  5. **Shear 5 — Dependency Weight & Library Footprint Pruning (`1MB Library -> 10KB Capability`)**: Audits `node_modules` / bundle weight against actual imported symbols, uninstalling unused packages and replacing oversized libraries (`moment`, `lodash`, `axios`, multi-MB vendor SDKs) with zero-KB native runtime APIs (`fetch`, `Intl`, `structuredClone`, `crypto.randomUUID`) or focused `<10KB` internal modules.
 - **Workflow**:
-  1. Records baseline LOC, third-party dependency sizes, and test status, then scans against the **5 Pruning Shears** (`PRUNING-PATTERNS.md`).
+  1. Records baseline LOC, third-party dependency sizes, and test status, then scans against the **5 Pruning Shears**.
   2. Locks any untested public seams with characterization tests (**GREEN**).
-  3. Dispatches $1 \dots N$ disjoint subagents to compress expressions (`12 -> 3 lines`), inline single-caller pass-throughs (the Deletion Test), replace bloated libraries (`>100KB–1MB+`) with native runtime APIs or a focused `<10KB` internal module, and delete dead exports/files.
-  4. Uninstalls eliminated dependencies, runs the full repository test suite, and proves 0 regressions alongside a strict reduction in source LOC and package weight.
-  5. Compiles Before/After code comparisons, dependency weight savings (MB/KB), and compression metrics into `bonsai-dashboard.html` and automatically opens it in your browser.
+  3. Dispatches $1 \dots N$ disjoint subagents to execute the 5 Shears while enforcing **Idiomatic Clarity Over Code Golf** and preserving all **8-Pillar Deep Seams**.
+  4. Uninstalls eliminated dependencies, runs the full repository test suite, and proves 0 regressions alongside a strict net-negative footprint.
+  5. Compiles Before/After code comparisons, a Dependency Diet Table (MB/KB saved), and compression metrics into `bonsai-dashboard.html` and automatically opens it in your browser.
 
 ### 5. `/survey` (0-Trust Quality Gate & PR)
 - **When to use**: Ready to submit completed work for review.
