@@ -1,6 +1,6 @@
 # Human-Facing Visual HTML Dashboard Guide
 
-Shared specification for generating self-contained visual HTML dashboards (`architecture-dashboard.html`, `deforestation-dashboard.html`, `bushog-dashboard.html`).
+Shared specification for generating self-contained visual HTML dashboards (`architecture-dashboard.html`, `deforestation-dashboard.html`, `bushog-dashboard.html`, `bonsai-dashboard.html`).
 
 ## 1. Plain-English Rule
 

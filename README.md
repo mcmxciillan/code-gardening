@@ -1,6 +1,6 @@
 # 🌿 Code Gardening
 
-> **A Complete Agentic Software Engineering Suite for Greenfield Architecture, Legacy De-Spaghettiing, Bug Clearing, 0-Trust Code Review, and Release Finalization.**
+> **A Complete Agentic Software Engineering Suite for Greenfield Architecture, Legacy De-Spaghettiing, Surgical Code Pruning, Bug Clearing, 0-Trust Code Review, and Release Finalization.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Architecture: 8-Pillars](https://img.shields.io/badge/Architecture-8--Pillars-blue.svg)](docs/ARCHITECTURAL-PRINCIPLES.md)
@@ -13,24 +13,26 @@
 
 When AI agents and software engineers build or refactor code reactively, systems frequently collapse into **20+ cycles of endless patching**—mixing database queries, UI state, authorization checks, and third-party API calls inside monolithic components and route handlers.
 
-**Code Gardening** is a battle-tested suite of 5 autonomous engineering skills designed to:
+**Code Gardening** is a battle-tested suite of 6 autonomous engineering skills designed to:
 1. **Plant Clean Systems from Day 1**: Interrogate humans upfront across 8 architectural pillars to construct deep, modular systems with zero rework.
 2. **Clear Legacy Overgrowth**: Systematically modernize legacy spaghetti codebases in a single campaign using context-isolated scanner agents and parallel subagent swarms.
 3. **Mow Defect Patches**: Triage and resolve bug batches at their architectural root cause using deterministic red-to-green test anchors.
-4. **Survey with Zero Trust**: Generate 100% traceable Pull Requests and submit code to a ruthless, adversarial 0-trust code reviewer.
-5. **Tidy the Release**: Merge PRs, close issues with resolution comments, advance project boards, and verify production deployments.
+4. **Prune & Compress with Bonsai**: Surgically eliminate dead code, collapse shallow pass-through wrappers, shorten verbose 12-line ceremony into idiomatic 3-line expressions, and replace bloated 1MB libraries with reusable <10KB custom capabilities.
+5. **Survey with Zero Trust**: Generate 100% traceable Pull Requests and submit code to a ruthless, adversarial 0-trust code reviewer.
+6. **Tidy the Release**: Merge PRs, close issues with resolution comments, advance project boards, and verify production deployments.
 
 ---
 
-## 🛠️ The 5-Skill Lifecycle Suite
+## 🛠️ The 6-Skill Lifecycle Suite
 
 ```mermaid
 graph LR
     A["1. greenfield-architecture<br>(Planting New Systems)"] --> G["Deep Seams & Test Anchors"]
     B["2. /deforestation<br>(Clearing Legacy Forest)"] --> G
     C["3. /bushog<br>(Targeted Defect Batches)"] --> G
-    G --> D["4. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["5. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
+    G --> D["5. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["6. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -39,6 +41,7 @@ graph LR
 | **`greenfield-architecture`** | Natural / Slash | **Day-1 Architecture** | 8-Pillar upfront interrogation $	o$ Decomposed User Stories $	o$ Auto-opened visual HTML dashboard $	o$ **Mandatory Pause Gate** $	o$ Deep module construction. |
 | **`deforestation`** | `/deforestation` | **Brownfield Modernization** | Context-isolated scanners $	o$ Self-contained specs (`docs/specs/`) $	o$ Auto-opened visual HTML dashboard $	o$ **Mandatory Pause Gate** $	o$ **Parallel Subagent Swarms**. |
 | **`bushog`** | `/bushog` | **Targeted Defect Clearing** | $1 \dots N$ parallel subagents $	o$ 8-Pillar root-cause fix $	o$ Auto-opened visual HTML defect dashboard $	o$ **Red $	o$ Green test anchors**. |
+| **`bonsai`** | `/bonsai` | **Surgical Code & Dependency Pruning** | 5 Pruning Shears (`12 -> 3 line` compression, Deletion Test, `1MB lib -> 10KB module`) $	o$ Characterization anchors $	o$ **Net-negative footprint & HTML dashboard**. |
 | **`survey`** | `/survey` | **0-Trust Review Gate & PR** | Acceptance criteria traceability matrix $	o$ **Ruthless 0-trust adversarial reviewer subagent** enforcing 8-pillar compliance before sign-off. |
 | **`tidy`** | `/tidy` | **Release & Lifecycle Closure** | Automated PR merge $	o$ Issue closure with resolution notes $	o$ Project board update $	o$ **Live deployment health verification**. |
 
@@ -103,6 +106,7 @@ graph TD
         H1["architecture-dashboard.html (Blueprints & Stories)"]
         H2["deforestation-dashboard.html (Before/After Seams)"]
         H3["bushog-dashboard.html (8-Pillar Defect Proofs)"]
+        H4["bonsai-dashboard.html (Net-Negative LOC & Pruning Proofs)"]
     end
 
     A1 -->|Compiled & Plain-English Translated| H1
@@ -153,14 +157,23 @@ All human-facing HTML dashboards avoid academic jargon and state problems and so
   3. Orchestrator runs the full repository test suite to confirm zero regressions.
   4. Compiles the verified root-cause proofs and test anchors into `bushog-dashboard.html` and automatically opens it in your browser.
 
-### 4. `/survey` (0-Trust Quality Gate & PR)
+### 4. `/bonsai` (Surgical Code & Dependency Pruning)
+- **When to use**: Slimming down bloated files/subsystems, shortening verbose 12-line loops/conditionals into 3 idiomatic lines, replacing heavy 1MB third-party libraries with reusable <10KB custom capabilities, collapsing pass-through wrappers, and purging dead code without altering functionality.
+- **Workflow**:
+  1. Records baseline LOC, third-party dependency sizes, and test status, then scans against the **5 Pruning Shears** (`PRUNING-PATTERNS.md`).
+  2. Locks any untested public seams with characterization tests (**GREEN**).
+  3. Dispatches $1 \dots N$ disjoint subagents to compress expressions (`12 -> 3 lines`), inline single-caller pass-throughs (the Deletion Test), replace bloated libraries (`>100KB–1MB+`) with native runtime APIs or a focused `<10KB` internal module, and delete dead exports/files.
+  4. Uninstalls eliminated dependencies, runs the full repository test suite, and proves 0 regressions alongside a strict reduction in source LOC and package weight.
+  5. Compiles Before/After code comparisons, dependency weight savings (MB/KB), and compression metrics into `bonsai-dashboard.html` and automatically opens it in your browser.
+
+### 5. `/survey` (0-Trust Quality Gate & PR)
 - **When to use**: Ready to submit completed work for review.
 - **Workflow**:
   1. Compiles changes into a structured PR with a 100% Acceptance Criteria matrix.
   2. Spawns an **Independent 0-Trust Adversarial Code Reviewer Subagent** that inspects the diff, surrounding callers, and test runs against `REVIEW-RUBRIC.md`.
   3. Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`) with a bounded 3-round remediation loop.
 
-### 5. `/tidy` (Release & Lifecycle Closure)
+### 6. `/tidy` (Release & Lifecycle Closure)
 - **When to use**: Merging approved work and releasing to production.
 - **Workflow**:
   1. Merges PRs (`--squash` or safe stacked PR retarget/rebase) and deletes merged branches.
@@ -188,6 +201,9 @@ code-gardening/
 │   │   └── SPEC-TEMPLATE.md           # Authoritative specification contract with Owned Files
 │   ├── bushog/
 │   │   └── SKILL.md                   # 1..N subagent bug batch clearing
+│   ├── bonsai/
+│   │   ├── SKILL.md                   # Surgical code pruning & net-negative LOC pipeline
+│   │   └── PRUNING-PATTERNS.md        # Disclosed reference: 5 Pruning Shears & 12->3 line patterns
 │   ├── survey/
 │   │   ├── SKILL.md                   # PR compiler & 0-trust adversarial reviewer
 │   │   ├── PR-TEMPLATE.md             # Traceable Pull Request template

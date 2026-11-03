@@ -7,8 +7,9 @@ graph LR
     A["1. greenfield-architecture<br>(New Features & Systems)"] --> G["Deep Seams & Test Anchors"]
     B["2. /deforestation<br>(Legacy Code Overhauls)"] --> G
     C["3. /bushog<br>(Targeted Defect Batches)"] --> G
-    G --> D["4. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["5. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
+    G --> D["5. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["6. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -56,7 +57,19 @@ graph LR
 
 ---
 
-## Workflow 4: Quality Gate & PR Review (`/survey`)
+## Workflow 4: Surgical Code & Dependency Pruning (`/bonsai`)
+
+1. **Invoke `/bonsai`** on a target file, subsystem, PR diff, or the entire repository.
+2. **Baseline & 5-Shear Audit**:
+   - The orchestrator records baseline LOC, dependency sizes (`node_modules` / bundle weight), and test status, then scans for bloat across the **5 Pruning Shears** (`12 -> 3 Line` expression compression, the Deletion Test for shallow pass-throughs, deduplication, dead/zombie code purge, and `1MB Library -> 10KB Custom Capability` replacements).
+3. **Test-Anchored Pruning ($1 \dots N$ Workers)**:
+   - Workers lock untested public seams with characterization tests (`GREEN`), prune boilerplate and dead weight, swap oversized libraries for native runtime APIs or compact `<10KB` internal modules, and verify 100% passing tests.
+4. **Dependency Uninstall, Sweep & Visual Compression Dashboard**:
+   - The orchestrator uninstalls eliminated packages, purges newly orphaned exports, runs the full repository test suite, and opens `bonsai-dashboard.html` showing net lines removed, library MB/KB saved, and Before/After code comparisons.
+
+---
+
+## Workflow 5: Quality Gate & PR Review (`/survey`)
 
 1. **Invoke `/survey`** on completed work.
 2. **PR Compilation**:
@@ -68,7 +81,7 @@ graph LR
 
 ---
 
-## Workflow 5: Release & Lifecycle Closure (`/tidy`)
+## Workflow 6: Release & Lifecycle Closure (`/tidy`)
 
 1. **Invoke `/tidy`** once a PR is approved.
 2. **Pre-Merge Health Check**: Verifies CI/CD checks and tree cleanliness.
