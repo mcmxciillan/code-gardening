@@ -9,8 +9,9 @@ graph LR
     C["3. /bushog<br>(Targeted Defect Batches)"] --> G
     H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
     S["5. /seed-catalog<br>(Shared Vocabulary & Docs)"] --> G
-    G --> D["6. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["7. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    P["6. /garden-party<br>(Progressive-Depth HTML Showcase)"] --> G
+    G --> D["7. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["8. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -82,7 +83,22 @@ graph LR
 
 ---
 
-## Workflow 6: Quality Gate & PR Review (`/survey`)
+## Workflow 6: Progressive-Depth Codebase Showcase (`/garden-party`)
+
+1. **Invoke `/garden-party`** when presenting a codebase to business executives, clients, product managers, or engineering teams.
+2. **Codebase & Pipeline Discovery**:
+   - The orchestrator inspects entrypoints, domain modules, external gateways, and—if present—`GLOSSARY.md` and `docs/specs/`, tracing end-to-end `Input -> Processing -> Output` function pipelines.
+3. **4-Tier Progressive Altitude Compilation (`garden-party-showcase.html`)**:
+   - **Tier 1 (Top 1/3 — The Lawn)**: Pure plain-English business mission, value/trust KPIs, and ecosystem diagram (`0%` code/jargon).
+   - **Tier 2 (Upper-Mid — The Pathways)**: Core business capabilities (*Trigger $\rightarrow$ Automated Safeguards $\rightarrow$ Outcome*) and user journey flowcharts.
+   - **Tier 3 (Lower-Mid — The Greenhouse)**: 5-Tier Deep Seam architecture diagram and subsystem ownership matrix.
+   - **Tier 4 (Bottom 1/3 — The Roots)**: Function-level **`Input → Processing → Output`** traces, sequence diagrams, and collapsible code inspectors with exact `file:line` citations.
+4. **Verification & Auto-Open**:
+   - Verifies `0` hallucinated file/function citations and opens `garden-party-showcase.html` in your browser.
+
+---
+
+## Workflow 7: Quality Gate & PR Review (`/survey`)
 
 1. **Invoke `/survey`** on completed work (from any skill or standalone branch).
 2. **PR Compilation**:
@@ -94,7 +110,7 @@ graph LR
 
 ---
 
-## Workflow 7: Release & Lifecycle Closure (`/tidy`)
+## Workflow 8: Release & Lifecycle Closure (`/tidy`)
 
 1. **Invoke `/tidy`** once a PR is approved.
 2. **Pre-Merge Health Check**: Verifies CI/CD checks and tree cleanliness.

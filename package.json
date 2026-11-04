@@ -1,7 +1,7 @@
 {
   "name": "code-gardening",
   "version": "1.0.0",
-  "description": "An agentic software engineering skill suite for greenfield architecture, legacy de-spaghettiing, surgical code pruning, shared vocabulary & documentation synthesis, bug clearing, 0-trust PR review, and release management.",
+  "description": "An agentic software engineering skill suite for greenfield architecture, legacy de-spaghettiing, surgical code pruning, shared vocabulary & documentation synthesis, progressive-depth HTML codebase showcases, bug clearing, 0-trust PR review, and release management.",
   "main": "index.js",
   "scripts": {
     "install-skills": "bash install.sh"
@@ -15,6 +15,7 @@
     "bushog",
     "bonsai",
     "seed-catalog",
+    "garden-party",
     "survey",
     "tidy",
     "greenfield-architecture"

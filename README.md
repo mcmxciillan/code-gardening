@@ -1,6 +1,6 @@
 # 🌿 Code Gardening
 
-> **A Complete Agentic Software Engineering Suite for Greenfield Architecture, Legacy De-Spaghettiing, Surgical Code Pruning, Shared Vocabulary & Documentation, Bug Clearing, 0-Trust Code Review, and Release Finalization.**
+> **A Complete Agentic Software Engineering Suite for Greenfield Architecture, Legacy De-Spaghettiing, Surgical Code Pruning, Shared Vocabulary & Documentation, Progressive-Depth Executive Showcases, Bug Clearing, 0-Trust Code Review, and Release Finalization.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Architecture: 8-Pillars](https://img.shields.io/badge/Architecture-8--Pillars-blue.svg)](docs/ARCHITECTURAL-PRINCIPLES.md)
@@ -13,18 +13,19 @@
 
 When AI agents and software engineers build or refactor code reactively, systems frequently collapse into **20+ cycles of endless patching**—mixing database queries, UI state, authorization checks, and third-party API calls inside monolithic components and route handlers.
 
-**Code Gardening** is a battle-tested suite of 7 autonomous engineering skills designed to:
+**Code Gardening** is a battle-tested suite of 8 autonomous engineering skills designed to:
 1. **Plant Clean Systems from Day 1**: Interrogate humans upfront across 8 architectural pillars to construct deep, modular systems with zero rework.
 2. **Clear Legacy Overgrowth**: Systematically modernize legacy spaghetti codebases in a single campaign using context-isolated scanner agents and parallel subagent swarms.
 3. **Mow Defect Patches**: Triage and resolve bug batches at their architectural root cause using deterministic red-to-green test anchors.
 4. **Prune & Compress with Bonsai**: Surgically eliminate dead code, collapse shallow pass-through wrappers, shorten verbose 12-line ceremony into idiomatic 3-line expressions, and replace bloated 1MB libraries with reusable <10KB custom capabilities.
 5. **Catalog the Shared Vocabulary & Docs**: Establish a canonical ubiquitous language (`GLOSSARY.md`) for every domain entity and 5-Tier seam, propose semantic renames for vague functions/classes/files, and synthesize verified `README.md` and `AGENTS.md` docs.
-6. **Survey with Zero Trust**: Generate 100% traceable Pull Requests and submit code to a ruthless, adversarial 0-trust code reviewer.
-7. **Tidy the Release**: Merge PRs, close issues with resolution comments, advance project boards, and verify production deployments.
+6. **Host the Garden Party Showcase**: Dress up the codebase in a single-page HTML showcase (`garden-party-showcase.html`) that starts with a pure business overview in the top third and progressively scrolls down into architecture diagrams and function-level `Input → Processing → Output` data flows.
+7. **Survey with Zero Trust**: Generate 100% traceable Pull Requests and submit code to a ruthless, adversarial 0-trust code reviewer.
+8. **Tidy the Release**: Merge PRs, close issues with resolution comments, advance project boards, and verify production deployments.
 
 ---
 
-## 🛠️ The 7-Skill Lifecycle Suite
+## 🛠️ The 8-Skill Lifecycle Suite
 
 ```mermaid
 graph LR
@@ -33,8 +34,9 @@ graph LR
     C["3. /bushog<br>(Targeted Defect Batches)"] --> G
     H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
     S["5. /seed-catalog<br>(Shared Vocabulary & Docs)"] --> G
-    G --> D["6. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["7. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    P["6. /garden-party<br>(Executive-to-Function HTML Tour)"] --> G
+    G --> D["7. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["8. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -45,6 +47,7 @@ graph LR
 | **`bushog`** | `/bushog` | **Targeted Defect Clearing** | $1 \dots N$ parallel subagents $	o$ 8-Pillar root-cause fix $	o$ Auto-opened visual HTML defect dashboard $	o$ **Red $	o$ Green test anchors**. |
 | **`bonsai`** | `/bonsai` | **Surgical Code & Dependency Pruning** | 5 Pruning Shears (`12 -> 3 line` compression, Deletion Test, `1MB lib -> 10KB module`) $	o$ Characterization anchors $	o$ **Net-negative footprint & HTML dashboard**. |
 | **`seed-catalog`** | `/seed-catalog` | **Shared Vocabulary, Renames & Core Docs** | Canonical `GLOSSARY.md` (Domain Terms + 5-Tier Seam Catalog + Semantic Rename Proposals) $	o$ Verified `README.md` & `AGENTS.md` $	o$ **Mandatory Pause Gate** before code renames. |
+| **`garden-party`** | `/garden-party` | **Executive-to-Engineering HTML Tour** | 4-Tier Progressive Altitude Scroll (`Top 1/3 Business Lawn` $	o$ `User Pathways` $	o$ `5-Tier Architecture` $	o$ **`Input -> Processing -> Output` Function Traces**). |
 | **`survey`** | `/survey` | **0-Trust Review Gate & PR** | Acceptance criteria traceability matrix $	o$ **Ruthless 0-trust adversarial reviewer subagent** enforcing 8 Pillars, `GLOSSARY.md` vocabulary, and campaign gates. |
 | **`tidy`** | `/tidy` | **Release & Lifecycle Closure** | Automated PR merge $	o$ Issue/spec closure (when present) $	o$ Project board update $	o$ **Live deployment health verification**. |
 
@@ -113,6 +116,7 @@ graph TD
         H3["bushog-dashboard.html (8-Pillar Defect Proofs)"]
         H4["bonsai-dashboard.html (Net-Negative LOC & Pruning Proofs)"]
         H5["seed-catalog-dashboard.html (Shared Vocabulary & Seam Map)"]
+        H6["garden-party-showcase.html (Business-to-Function Scroll Tour)"]
     end
 
     A1 -->|Compiled & Plain-English Translated| H1
@@ -194,14 +198,27 @@ All human-facing HTML dashboards avoid academic jargon and state problems and so
   5. Opens `seed-catalog-dashboard.html` in your browser and **pauses at a Mandatory Confirmation Gate** before renaming any source code.
   6. Upon user approval (`"Execute Renames"`), renames approved files (`git mv`), classes, and functions across all callers, deletes obsolete pass-through aliases (`/bonsai` Shear 2), syncs documentation paths, and verifies a `100% GREEN` test suite.
 
-### 6. `/survey` (0-Trust Quality Gate & PR)
+### 6. `/garden-party` (Progressive-Depth Executive-to-Engineering HTML Showcase)
+- **Description**: Progressive-depth HTML codebase showcase generator (`garden-party-showcase.html`) for business and technical audiences. Like hosting a garden party for guests who appreciate the beauty of the garden without needing to know the botanical species names, `/garden-party` structures a single-page HTML tour so **the further the reader scrolls down, the deeper the technical detail becomes**.
+- **When to use**: Presenting a codebase to business executives, clients, sales/operations teams, product managers, or onboarding engineers, or running `/garden-party`.
+- **The 4-Tier Progressive Altitude Scroll (`skills/garden-party/SHOWCASE-TEMPLATE.md`)**:
+  1. **Tier 1 — The Lawn (`Top 1/3`: Executive & Business Overview — `0%` Code/Jargon)**: Plain-English mission statement, 4 Business Value & Trust KPI cards, and an at-a-glance ecosystem diagram (*Who uses it $\rightarrow$ What it does $\rightarrow$ Trusted partners*). Business stakeholders satisfied with the high-level picture can stop right here.
+  2. **Tier 2 — The Garden Pathways (`Upper-Mid`: Business Capabilities & Journeys)**: Capability cards (*What triggers it $\rightarrow$ What rules & safeguards run automatically $\rightarrow$ Guaranteed business outcome*) paired with step-by-step plain-English journey flowcharts.
+  3. **Tier 3 — The Greenhouse (`Lower-Mid`: System Architecture & 5-Tier Seams)**: Visual 5-Tier Deep Seam architecture diagram (`Thin Delivery Adapters`, `Declarative Policy Guards`, `Deep Domain Modules`, `Anti-Corruption Gateways`, `Headless State Models`) and a Subsystem Ownership Matrix.
+  4. **Tier 4 — The Root System (`Bottom 1/3`: Function-Level `Input → Processing → Output` Traces)**: For technical readers who scroll all the way down—traces the exact function call chain across real `file:line` paths using 3-column **`📥 Input → ⚙️ Processing → 📤 Output`** cards, function-level Mermaid `sequenceDiagram`s, and collapsible `<details>` code inspectors.
+- **Workflow**:
+  1. Inspects entrypoints, domain modules, external gateways, and existing `GLOSSARY.md` / `docs/specs/` (when present).
+  2. Traces 3–6 core workflows end-to-end from entry adapter through policy guards, repository transactions, and gateways to output payloads.
+  3. Compiles `${OUT_DIR}/garden-party-showcase.html` with a sticky progressive-depth navigation bar, verifies `0` hallucinated file/function citations, and automatically opens it in your browser.
+
+### 7. `/survey` (0-Trust Quality Gate & PR)
 - **When to use**: Ready to submit completed work (from any skill or standalone branch) for review.
 - **Workflow**:
   1. Compiles changes into a structured PR (`PR-DRAFT.md`) with a 100% Acceptance Criteria verification matrix (tracing to originating specs/tickets when present, or campaign deliverables for standalone, `/bonsai`, and `/seed-catalog` runs).
   2. Spawns an **Independent 0-Trust Adversarial Code Reviewer Subagent** that inspects the diff, surrounding callers, and verification proofs against `REVIEW-RUBRIC.md` (auditing the 8 Pillars, `GLOSSARY.md` vocabulary alignment when present, `/bonsai` net-negative footprint, and `/seed-catalog` link integrity).
   3. Emits a structured verdict (`APPROVED`, `REQUEST_CHANGES`, `BLOCKING_VETO`) with a bounded 3-round remediation loop and publishes the GitHub Pull Request.
 
-### 7. `/tidy` (Release & Lifecycle Closure)
+### 8. `/tidy` (Release & Lifecycle Closure)
 - **When to use**: Merging approved work and releasing to production.
 - **Workflow**:
   1. Merges PRs (`--squash` or safe stacked PR retarget/rebase) and deletes merged branches.
@@ -235,6 +252,9 @@ code-gardening/
 │   ├── seed-catalog/
 │   │   ├── SKILL.md                   # Shared vocabulary (GLOSSARY.md) & core doc synthesis
 │   │   └── CATALOG-STANDARDS.md       # Disclosed reference: Ubiquitous language & doc templates
+│   ├── garden-party/
+│   │   ├── SKILL.md                   # Progressive-depth executive-to-function HTML showcase
+│   │   └── SHOWCASE-TEMPLATE.md       # Disclosed reference: 4-Tier altitude scroll & Input->Output spec
 │   ├── survey/
 │   │   ├── SKILL.md                   # PR compiler & 0-trust adversarial reviewer
 │   │   ├── PR-TEMPLATE.md             # Traceable Pull Request template
