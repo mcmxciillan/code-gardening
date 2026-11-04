@@ -3,7 +3,7 @@
 ## 1. Traceability & Context
 - **Related Spec**: `[docs/specs/SPEC-ID-name.md]` (or Issue / Ticket `#123`)
 - **Primary Domain / Subsystem**: `[e.g., Auth, Storage, Billing, Content, UI]`
-- **Refactoring Type**: `[Greenfield Feature | /deforestation Seam Overhaul | /bushog Bug Batch | /bonsai Code & Dependency Pruning | /seed-catalog Vocabulary & Docs]`
+- **Refactoring Type**: `[Greenfield Feature | /deforestation Seam Overhaul | /bushog Bug Batch | /bonsai Code & Dependency Pruning | /seed-catalog Vocabulary & Docs | /garden-party Showcase]`
 
 ---
 

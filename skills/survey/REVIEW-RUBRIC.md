@@ -66,3 +66,7 @@ Apply the sub-gates below whenever the corresponding repository artifact or camp
 ### 3. Seed Catalog & Documentation Audit (When Reviewing `/seed-catalog` Changes)
 - **Pass**: `0` broken links or phantom file/script paths (`test -e`), `0` unquoted uses of banned `_Avoid_` terms across updated docs, and `AGENTS.md` / `CLAUDE.md` kept tight (<80 lines) with zero no-op filler.
 - **Flag**: Hallucinated file paths, stale CLI commands not in `package.json`/manifests, or vague "component/service" taxonomy in `GLOSSARY.md` Section 2.
+
+### 4. Garden Party Showcase Audit (When Reviewing `/garden-party` Changes)
+- **Pass**: 4-Tier progressive altitude scroll is intact (Tier 1 business overview has `0%` code/jargon; Tier 4 traces exact `Input → Processing → Output` pipelines across real `file:line` functions), `0` hallucinated file/function citations, and valid quoted Mermaid syntax.
+- **Flag**: Raw code/file paths leaked into Tier 1, or placeholder/invented function names in Tier 4 traces.
