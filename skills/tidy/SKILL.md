@@ -49,7 +49,7 @@ Merge in strict topological order (Tier 1 parent $\rightarrow$ Tier 2 $\rightarr
 
 ## Phase 3: Issue, Story & Spec Closure (When Present)
 
-Locate any tickets, user stories (`US-*`), and specs (`SPEC-*`) linked in the merged PR (if the PR came from `/bonsai`, `/seed-catalog`, or a standalone branch with no linked issues or spec files, skip this phase cleanly and record `N/A`):
+Locate any tickets, user stories (`US-*`), and specs (`SPEC-*`) linked in the merged PR (if the PR came from `/espalier`, `/bonsai`, `/seed-catalog`, `/garden-party`, or a standalone branch with no linked issues or spec files, skip this phase cleanly and record `N/A`):
 
 1. **Remote GitHub Issues**: Once the merge commit is on the base branch, close each referenced issue (`gh issue close <ISSUE-NUM>`) with a concise resolution comment:
    ```markdown

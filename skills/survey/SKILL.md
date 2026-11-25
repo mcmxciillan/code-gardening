@@ -24,7 +24,7 @@ graph TD
 
 1. **Inspect Changes & Originating Context**:
    - Determine the base ref (`BASE_REF`, e.g., `main` or merge-base) and inspect `git status` and `git diff ${BASE_REF}...HEAD --stat`.
-   - Locate originating specifications (`docs/specs/SPEC-*.md`), user stories (`US-*`), or issue tickets **when present**. If none exist (e.g., standalone branches, `/bonsai` pruning runs, `/seed-catalog` documentation runs, or ad-hoc `/bushog` fixes), derive the Acceptance Criteria directly from the campaign deliverables or user prompt.
+   - Locate originating specifications (`docs/specs/SPEC-*.md`), user stories (`US-*`), Trellis Plans (`~/private/tmp/{project-name}/espalier-plan.md`), or issue tickets **when present**. If none exist (e.g., standalone branches, `/bonsai` pruning runs, `/seed-catalog` documentation runs, or ad-hoc `/bushog` fixes), derive the Acceptance Criteria directly from the campaign deliverables or user prompt.
    - Check whether `GLOSSARY.md` exists at the repository root so vocabulary alignment can be verified.
 2. **Draft the Pull Request**:
    - Populate [`PR-TEMPLATE.md`](PR-TEMPLATE.md) and save the draft to `~/private/tmp/{project-name}/PR-DRAFT.md`:
@@ -43,18 +43,18 @@ Delegate the code audit to an isolated subagent (`invoke_subagent`) so the autho
 You are an independent, zero-trust Principal Architect performing an adversarial review for /survey.
 
 YOUR MANDATE:
-Actively attempt to DISPROVE that the candidate changes satisfy the acceptance criteria, the 8 Pillars of Greenfield Architecture, and any applicable campaign gates (/bonsai or /seed-catalog). Identify unverified claims, missing edge cases, leaky seams, vocabulary drift, and shallow tests.
+Actively attempt to DISPROVE that the candidate changes satisfy the acceptance criteria, the 8 Pillars of Greenfield Architecture, and any applicable campaign gates (/espalier, /bonsai, /seed-catalog, or /garden-party). Identify unverified claims, missing edge cases, leaky seams, vocabulary drift, and shallow tests.
 
 INPUTS:
 1. Review Rubric: Read `~/.gemini/config/skills/survey/REVIEW-RUBRIC.md` (or `skills/survey/REVIEW-RUBRIC.md` in the repo).
-2. Originating Spec / Ticket / Campaign Context: `[Path to spec/issue if present, or summary of standalone /bonsai / /seed-catalog / /bushog intent]`
+2. Originating Spec / Ticket / Campaign Context: `[Path to spec/espalier-plan/issue if present, or summary of standalone /espalier / /bonsai / /seed-catalog / /bushog intent]`
 3. Shared Vocabulary (When Present): If `GLOSSARY.md` exists at the repository root, read it to audit terminology compliance.
 4. Draft PR & AC Matrix: `~/private/tmp/{project-name}/PR-DRAFT.md`
 5. Git Range to Inspect: Run `git diff <BASE_REF>...HEAD` (or inspect uncommitted changes via `git diff HEAD`).
 
 AUDIT STEPS:
 1. Verify every Acceptance Criterion in `PR-DRAFT.md` against the actual implementation, test assertions, or verification proofs at the cited lines.
-2. Inspect the modified files AND their surrounding callers against all applicable gates in `REVIEW-RUBRIC.md` (8 Pillars, `GLOSSARY.md` vocabulary alignment when present, `/bonsai` net-negative footprint, or `/seed-catalog` zero-phantom-link integrity).
+2. Inspect the modified files AND their surrounding callers against all applicable gates in `REVIEW-RUBRIC.md` (8 Pillars, `GLOSSARY.md` vocabulary alignment when present, `/espalier` minimal code & barrel-only coupling, `/bonsai` net-negative footprint, `/seed-catalog` zero-phantom-link integrity, or `/garden-party` altitude discipline).
 3. Execute the relevant test suite or verification command to confirm checks genuinely pass.
 
 REQUIRED OUTPUT FORMAT:

@@ -9,7 +9,7 @@ mkdir -p "${TARGET_DIR}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-for skill in greenfield-architecture deforestation bushog bonsai seed-catalog garden-party survey tidy; do
+for skill in greenfield-architecture espalier deforestation bushog bonsai seed-catalog garden-party survey tidy; do
   if [ -d "${SCRIPT_DIR}/skills/${skill}" ]; then
     echo "  -> Installing skill: ${skill}..."
     mkdir -p "${TARGET_DIR}/${skill}"
@@ -21,6 +21,7 @@ echo "✅ All Code Gardening skills installed successfully to ${TARGET_DIR}!"
 echo ""
 echo "Available Skills in your Agent Environment:"
 echo "  🌿 greenfield-architecture : Upfront discovery & Day-1 deep module design"
+echo "  🪜 /espalier               : Controlled, minimal-code small features on existing seams"
 echo "  🌲 /deforestation          : Multi-agent legacy codebase de-spaghettiing"
 echo "  🚜 /bushog                 : 1..N subagent bug batch clearing & test anchors"
 echo "  🪴 /bonsai                 : Surgical code pruning, 12->3 line compression & 1MB->10KB dependency diet"

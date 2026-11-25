@@ -4,14 +4,15 @@ This guide walks through the complete end-to-end software development lifecycle 
 
 ```mermaid
 graph LR
-    A["1. greenfield-architecture<br>(New Features & Systems)"] --> G["Deep Seams & Test Anchors"]
-    B["2. /deforestation<br>(Legacy Code Overhauls)"] --> G
-    C["3. /bushog<br>(Targeted Defect Batches)"] --> G
-    H["4. /bonsai<br>(Surgical Code Pruning)"] --> G
-    S["5. /seed-catalog<br>(Shared Vocabulary & Docs)"] --> G
-    P["6. /garden-party<br>(Progressive-Depth HTML Showcase)"] --> G
-    G --> D["7. /survey<br>(PR Gen + 0-Trust Code Review)"]
-    D -->|Approved| E["8. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
+    A["1. greenfield-architecture<br>(New Systems & Major Features)"] --> G["Deep Seams & Test Anchors"]
+    E1["2. /espalier<br>(Minimal Trained Small Features)"] --> G
+    B["3. /deforestation<br>(Legacy Code Overhauls)"] --> G
+    C["4. /bushog<br>(Targeted Defect Batches)"] --> G
+    H["5. /bonsai<br>(Surgical Code Pruning)"] --> G
+    S["6. /seed-catalog<br>(Shared Vocabulary & Docs)"] --> G
+    P["7. /garden-party<br>(Progressive-Depth HTML Showcase)"] --> G
+    G --> D["8. /survey<br>(PR Gen + 0-Trust Code Review)"]
+    D -->|Approved| E["9. /tidy<br>(Merge, Close Issues, Verify Deploy)"]
     E --> F["🚀 Production Deployed & Clean Repo"]
 ```
 
@@ -31,7 +32,19 @@ graph LR
 
 ---
 
-## Workflow 2: Modernizing a Legacy Spaghetti Codebase (`/deforestation`)
+## Workflow 2: Adding a Small, Controlled Feature (`/espalier`)
+
+1. **Invoke `/espalier`** when adding a small, specific feature to an existing codebase.
+2. **Existing Trellis Audit & Targeted Gap Check (Gate 1)**:
+   - Inspects existing deep modules, public barrels, `GLOSSARY.md` (if present), and `package.json` to map every seam that can be reused or extended without duplicating logic. Asks clarifying questions only if business rules are genuinely ambiguous.
+3. **Trellis Plan, Code Budget & Visual Dashboard (Gate 2 — Pause)**:
+   - Writes `~/private/tmp/{project-name}/espalier-plan.md` detailing the **Reuse Map**, **Minimal Touch-List & LOC Budget**, **Barrel-Only Cross-Feature Access**, and **Zero Heavy Dependencies**, opens `espalier-dashboard.html`, and pauses for `"Proceed"`.
+4. **Trained Construction & Bonsai Self-Prune**:
+   - Scaffolds failing anchor tests (`RED`), implements the minimal diff on existing seams using flat `12 -> 3` expressions, verifies `GREEN`, and runs a Bonsai self-prune pass over `git diff` before updating the dashboard.
+
+---
+
+## Workflow 3: Modernizing a Legacy Spaghetti Codebase (`/deforestation`)
 
 1. **Invoke `/deforestation`**:
    - The orchestrator spawns 4 context-isolated read-only scanner subagents (Delivery, Domain, UI State, Integrations).
@@ -47,7 +60,7 @@ graph LR
 
 ---
 
-## Workflow 3: Clearing Bug Batches (`/bushog`)
+## Workflow 4: Clearing Bug Batches (`/bushog`)
 
 1. **Invoke `/bushog`** with a list of issues, stack traces, or failing tests.
 2. **Triage & Disjoint Worker Allocation**:
@@ -59,7 +72,7 @@ graph LR
 
 ---
 
-## Workflow 4: Surgical Code & Dependency Pruning (`/bonsai`)
+## Workflow 5: Surgical Code & Dependency Pruning (`/bonsai`)
 
 1. **Invoke `/bonsai`** on a target file, subsystem, PR diff, or the entire repository.
 2. **Baseline & 5-Shear Audit**:
@@ -71,7 +84,7 @@ graph LR
 
 ---
 
-## Workflow 5: Shared Vocabulary, Semantic Renames & Documentation Synthesis (`/seed-catalog`)
+## Workflow 6: Shared Vocabulary, Semantic Renames & Documentation Synthesis (`/seed-catalog`)
 
 1. **Invoke `/seed-catalog`** on an existing or newly architected repository.
 2. **Terminology, Identifier & Seam Inventory**:
@@ -83,7 +96,7 @@ graph LR
 
 ---
 
-## Workflow 6: Progressive-Depth Codebase Showcase (`/garden-party`)
+## Workflow 7: Progressive-Depth Codebase Showcase (`/garden-party`)
 
 1. **Invoke `/garden-party`** when presenting a codebase to business executives, clients, product managers, or engineering teams.
 2. **Codebase & Pipeline Discovery**:
@@ -98,7 +111,7 @@ graph LR
 
 ---
 
-## Workflow 7: Quality Gate & PR Review (`/survey`)
+## Workflow 8: Quality Gate & PR Review (`/survey`)
 
 1. **Invoke `/survey`** on completed work (from any skill or standalone branch).
 2. **PR Compilation**:
@@ -110,7 +123,7 @@ graph LR
 
 ---
 
-## Workflow 8: Release & Lifecycle Closure (`/tidy`)
+## Workflow 9: Release & Lifecycle Closure (`/tidy`)
 
 1. **Invoke `/tidy`** once a PR is approved.
 2. **Pre-Merge Health Check**: Verifies CI/CD checks and tree cleanliness.
