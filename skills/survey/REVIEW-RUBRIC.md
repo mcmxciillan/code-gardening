@@ -70,3 +70,7 @@ Apply the sub-gates below whenever the corresponding repository artifact or camp
 ### 4. Garden Party Showcase Audit (When Reviewing `/garden-party` Changes)
 - **Pass**: 4-Tier progressive altitude scroll is intact (Tier 1 business overview has `0%` code/jargon; Tier 4 traces exact `Input → Processing → Output` pipelines across real `file:line` functions), `0` hallucinated file/function citations, and valid quoted Mermaid syntax.
 - **Flag**: Raw code/file paths leaked into Tier 1, or placeholder/invented function names in Tier 4 traces.
+
+### 5. Espalier Minimal Feature Audit (When Reviewing `/espalier` Changes)
+- **Pass**: Diff stays within the planned minimal Touch-List and code budget, extends existing deep modules rather than duplicating logic, accesses other features exclusively through public barrels (zero deep internal imports or circular deps), introduces zero heavy third-party libraries, and passes a Bonsai self-prune conciseness check.
+- **Flag**: Copy-pasted auth/validation/domain logic that already exists in another seam, deep internal imports into peer features, unnecessary shallow wrapper files, or verbose 12-line boilerplate where 3 clear lines suffice.
